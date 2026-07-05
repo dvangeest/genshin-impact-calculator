@@ -1,7 +1,7 @@
 ---
 name: genshin-calculator-agent
 description: "Frontend-first Genshin Impact damage calculator agent for math-heavy UI, formulas, and testable implementations."
-tools: [read, edit, search, execute]
+tools: [vscode, execute, read, agent, edit, search, web, browser, 'gitkraken/*', todo]
 argument-hint: "Implement or explain a calculator feature, formula, UI, or test."
 user-invocable: true
 ---
