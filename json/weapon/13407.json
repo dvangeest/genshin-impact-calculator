@@ -1,0 +1,425 @@
+{
+    "ascension": [
+        {
+            "count": 10,
+            "icon": "UI_ItemIcon_112002"
+        },
+        {
+            "count": 15,
+            "icon": "UI_ItemIcon_112003"
+        },
+        {
+            "count": 18,
+            "icon": "UI_ItemIcon_112004"
+        },
+        {
+            "count": 15,
+            "icon": "UI_ItemIcon_112023"
+        },
+        {
+            "count": 18,
+            "icon": "UI_ItemIcon_112024"
+        },
+        {
+            "count": 27,
+            "icon": "UI_ItemIcon_112025"
+        },
+        {
+            "count": 3,
+            "icon": "UI_ItemIcon_114009"
+        },
+        {
+            "count": 9,
+            "icon": "UI_ItemIcon_114010"
+        },
+        {
+            "count": 9,
+            "icon": "UI_ItemIcon_114011"
+        },
+        {
+            "count": 4,
+            "icon": "UI_ItemIcon_114012"
+        },
+        {
+            "count": 150000,
+            "icon": "UI_ItemIcon_202"
+        }
+    ],
+    "name": "Favonius Lance",
+    "passive": {
+        "name": "Windfall",
+        "refinements": {
+            "1": "CRIT Hits have a 60% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 12s.",
+            "2": "CRIT Hits have a 70% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 10.5s.",
+            "3": "CRIT Hits have a 80% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 9s.",
+            "4": "CRIT Hits have a 90% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 7.5s.",
+            "5": "CRIT Hits have a 100% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 6s."
+        }
+    },
+    "qualityType": "QUALITY_PURPLE",
+    "stats": {
+        "1": {
+            "Energy Recharge%": 6.7,
+            "atk": 44
+        },
+        "10": {
+            "Energy Recharge%": 9.1,
+            "atk": 79
+        },
+        "11": {
+            "Energy Recharge%": 9.1,
+            "atk": 83
+        },
+        "12": {
+            "Energy Recharge%": 9.1,
+            "atk": 87
+        },
+        "13": {
+            "Energy Recharge%": 9.1,
+            "atk": 91
+        },
+        "14": {
+            "Energy Recharge%": 9.1,
+            "atk": 95
+        },
+        "15": {
+            "Energy Recharge%": 10.4,
+            "atk": 99
+        },
+        "16": {
+            "Energy Recharge%": 10.4,
+            "atk": 103
+        },
+        "17": {
+            "Energy Recharge%": 10.4,
+            "atk": 107
+        },
+        "18": {
+            "Energy Recharge%": 10.4,
+            "atk": 111
+        },
+        "19": {
+            "Energy Recharge%": 10.4,
+            "atk": 115
+        },
+        "2": {
+            "Energy Recharge%": 6.7,
+            "atk": 48
+        },
+        "20": {
+            "Energy Recharge%": 11.8,
+            "atk": 119
+        },
+        "21": {
+            "Energy Recharge%": 11.8,
+            "atk": 148
+        },
+        "22": {
+            "Energy Recharge%": 11.8,
+            "atk": 153
+        },
+        "23": {
+            "Energy Recharge%": 11.8,
+            "atk": 157
+        },
+        "24": {
+            "Energy Recharge%": 11.8,
+            "atk": 161
+        },
+        "25": {
+            "Energy Recharge%": 13.1,
+            "atk": 165
+        },
+        "26": {
+            "Energy Recharge%": 13.1,
+            "atk": 169
+        },
+        "27": {
+            "Energy Recharge%": 13.1,
+            "atk": 173
+        },
+        "28": {
+            "Energy Recharge%": 13.1,
+            "atk": 177
+        },
+        "29": {
+            "Energy Recharge%": 13.1,
+            "atk": 181
+        },
+        "3": {
+            "Energy Recharge%": 6.7,
+            "atk": 51
+        },
+        "30": {
+            "Energy Recharge%": 14.5,
+            "atk": 185
+        },
+        "31": {
+            "Energy Recharge%": 14.5,
+            "atk": 189
+        },
+        "32": {
+            "Energy Recharge%": 14.5,
+            "atk": 193
+        },
+        "33": {
+            "Energy Recharge%": 14.5,
+            "atk": 197
+        },
+        "34": {
+            "Energy Recharge%": 14.5,
+            "atk": 201
+        },
+        "35": {
+            "Energy Recharge%": 15.8,
+            "atk": 205
+        },
+        "36": {
+            "Energy Recharge%": 15.8,
+            "atk": 210
+        },
+        "37": {
+            "Energy Recharge%": 15.8,
+            "atk": 214
+        },
+        "38": {
+            "Energy Recharge%": 15.8,
+            "atk": 218
+        },
+        "39": {
+            "Energy Recharge%": 15.8,
+            "atk": 222
+        },
+        "4": {
+            "Energy Recharge%": 6.7,
+            "atk": 55
+        },
+        "40": {
+            "Energy Recharge%": 17.2,
+            "atk": 226
+        },
+        "41": {
+            "Energy Recharge%": 17.2,
+            "atk": 256
+        },
+        "42": {
+            "Energy Recharge%": 17.2,
+            "atk": 260
+        },
+        "43": {
+            "Energy Recharge%": 17.2,
+            "atk": 264
+        },
+        "44": {
+            "Energy Recharge%": 17.2,
+            "atk": 268
+        },
+        "45": {
+            "Energy Recharge%": 18.5,
+            "atk": 273
+        },
+        "46": {
+            "Energy Recharge%": 18.5,
+            "atk": 277
+        },
+        "47": {
+            "Energy Recharge%": 18.5,
+            "atk": 281
+        },
+        "48": {
+            "Energy Recharge%": 18.5,
+            "atk": 285
+        },
+        "49": {
+            "Energy Recharge%": 18.5,
+            "atk": 289
+        },
+        "5": {
+            "Energy Recharge%": 7.7,
+            "atk": 59
+        },
+        "50": {
+            "Energy Recharge%": 19.9,
+            "atk": 293
+        },
+        "51": {
+            "Energy Recharge%": 19.9,
+            "atk": 323
+        },
+        "52": {
+            "Energy Recharge%": 19.9,
+            "atk": 328
+        },
+        "53": {
+            "Energy Recharge%": 19.9,
+            "atk": 332
+        },
+        "54": {
+            "Energy Recharge%": 19.9,
+            "atk": 336
+        },
+        "55": {
+            "Energy Recharge%": 21.2,
+            "atk": 340
+        },
+        "56": {
+            "Energy Recharge%": 21.2,
+            "atk": 344
+        },
+        "57": {
+            "Energy Recharge%": 21.2,
+            "atk": 348
+        },
+        "58": {
+            "Energy Recharge%": 21.2,
+            "atk": 353
+        },
+        "59": {
+            "Energy Recharge%": 21.2,
+            "atk": 357
+        },
+        "6": {
+            "Energy Recharge%": 7.7,
+            "atk": 63
+        },
+        "60": {
+            "Energy Recharge%": 22.6,
+            "atk": 361
+        },
+        "61": {
+            "Energy Recharge%": 22.6,
+            "atk": 391
+        },
+        "62": {
+            "Energy Recharge%": 22.6,
+            "atk": 395
+        },
+        "63": {
+            "Energy Recharge%": 22.6,
+            "atk": 399
+        },
+        "64": {
+            "Energy Recharge%": 22.6,
+            "atk": 404
+        },
+        "65": {
+            "Energy Recharge%": 23.9,
+            "atk": 408
+        },
+        "66": {
+            "Energy Recharge%": 23.9,
+            "atk": 412
+        },
+        "67": {
+            "Energy Recharge%": 23.9,
+            "atk": 416
+        },
+        "68": {
+            "Energy Recharge%": 23.9,
+            "atk": 420
+        },
+        "69": {
+            "Energy Recharge%": 23.9,
+            "atk": 424
+        },
+        "7": {
+            "Energy Recharge%": 7.7,
+            "atk": 67
+        },
+        "70": {
+            "Energy Recharge%": 25.2,
+            "atk": 429
+        },
+        "71": {
+            "Energy Recharge%": 25.2,
+            "atk": 459
+        },
+        "72": {
+            "Energy Recharge%": 25.2,
+            "atk": 463
+        },
+        "73": {
+            "Energy Recharge%": 25.2,
+            "atk": 467
+        },
+        "74": {
+            "Energy Recharge%": 25.2,
+            "atk": 471
+        },
+        "75": {
+            "Energy Recharge%": 26.6,
+            "atk": 476
+        },
+        "76": {
+            "Energy Recharge%": 26.6,
+            "atk": 480
+        },
+        "77": {
+            "Energy Recharge%": 26.6,
+            "atk": 484
+        },
+        "78": {
+            "Energy Recharge%": 26.6,
+            "atk": 488
+        },
+        "79": {
+            "Energy Recharge%": 26.6,
+            "atk": 493
+        },
+        "8": {
+            "Energy Recharge%": 7.7,
+            "atk": 71
+        },
+        "80": {
+            "Energy Recharge%": 27.9,
+            "atk": 497
+        },
+        "81": {
+            "Energy Recharge%": 27.9,
+            "atk": 527
+        },
+        "82": {
+            "Energy Recharge%": 27.9,
+            "atk": 531
+        },
+        "83": {
+            "Energy Recharge%": 27.9,
+            "atk": 535
+        },
+        "84": {
+            "Energy Recharge%": 27.9,
+            "atk": 539
+        },
+        "85": {
+            "Energy Recharge%": 29.3,
+            "atk": 544
+        },
+        "86": {
+            "Energy Recharge%": 29.3,
+            "atk": 548
+        },
+        "87": {
+            "Energy Recharge%": 29.3,
+            "atk": 552
+        },
+        "88": {
+            "Energy Recharge%": 29.3,
+            "atk": 556
+        },
+        "89": {
+            "Energy Recharge%": 29.3,
+            "atk": 561
+        },
+        "9": {
+            "Energy Recharge%": 7.7,
+            "atk": 75
+        },
+        "90": {
+            "Energy Recharge%": 30.6,
+            "atk": 565
+        }
+    },
+    "weaponDesc": "A polearm made in the style of the Knights of Favonius. Its shaft is straight, and its tip flows lightly like the wind.",
+    "weaponIcon": "UI_EquipIcon_Pole_Zephyrus",
+    "weaponType": "WEAPON_POLE"
+}

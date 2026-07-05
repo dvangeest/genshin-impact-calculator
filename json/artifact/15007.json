@@ -1,0 +1,33 @@
+{
+    "info": {
+        "pieces": {
+            "circlet": {
+                "icon": "UI_RelicIcon_15007_3",
+                "name": "Royal Masque"
+            },
+            "flower": {
+                "icon": "UI_RelicIcon_15007_4",
+                "name": "Royal Flora"
+            },
+            "goblet": {
+                "icon": "UI_RelicIcon_15007_1",
+                "name": "Royal Silver Urn"
+            },
+            "plume": {
+                "icon": "UI_RelicIcon_15007_2",
+                "name": "Royal Plume"
+            },
+            "sands": {
+                "icon": "UI_RelicIcon_15007_5",
+                "name": "Royal Pocket Watch"
+            }
+        },
+        "qualityType": "QUALITY_ORANGE",
+        "setBonuses": {
+            "2pc": "Elemental Burst DMG +20%",
+            "4pc": "Using an Elemental Burst increases all party members' ATK by 20% for 12s. This effect cannot stack."
+        },
+        "setIcon": "UI_RelicIcon_15007_4",
+        "setName": "Noblesse Oblige"
+    }
+}

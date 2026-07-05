@@ -1,0 +1,33 @@
+{
+    "info": {
+        "pieces": {
+            "circlet": {
+                "icon": "UI_RelicIcon_15046_3",
+                "name": "Pendulum That Ceased Amidst a Great Fall"
+            },
+            "flower": {
+                "icon": "UI_RelicIcon_15046_4",
+                "name": "Iridescence That Ceased Amidst Glory"
+            },
+            "goblet": {
+                "icon": "UI_RelicIcon_15046_1",
+                "name": "Ovations That Ceased Upon Festivity"
+            },
+            "plume": {
+                "icon": "UI_RelicIcon_15046_2",
+                "name": "Sharpness That Ceased Upon Wondrous Creation"
+            },
+            "sands": {
+                "icon": "UI_RelicIcon_15046_5",
+                "name": "Moment That Ceased Upon Waking From Grand Dreams"
+            }
+        },
+        "qualityType": "QUALITY_ORANGE",
+        "setBonuses": {
+            "2pc": "ATK +18%.",
+            "4pc": "Increases Superconduct Reaction DMG by 80% and Stellar-Conduct Reaction DMG by 40%. When the wielder attacks opponents affected by Superconduct or Stellar-Conduct, this attack's CRIT Rate is increased by 16%."
+        },
+        "setIcon": "UI_RelicIcon_15046_4",
+        "setName": "Disenchantment in Deep Shadow"
+    }
+}

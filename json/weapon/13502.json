@@ -1,0 +1,425 @@
+{
+    "ascension": [
+        {
+            "count": 15,
+            "icon": "UI_ItemIcon_112008"
+        },
+        {
+            "count": 23,
+            "icon": "UI_ItemIcon_112009"
+        },
+        {
+            "count": 27,
+            "icon": "UI_ItemIcon_112010"
+        },
+        {
+            "count": 23,
+            "icon": "UI_ItemIcon_112023"
+        },
+        {
+            "count": 27,
+            "icon": "UI_ItemIcon_112024"
+        },
+        {
+            "count": 41,
+            "icon": "UI_ItemIcon_112025"
+        },
+        {
+            "count": 5,
+            "icon": "UI_ItemIcon_114009"
+        },
+        {
+            "count": 14,
+            "icon": "UI_ItemIcon_114010"
+        },
+        {
+            "count": 14,
+            "icon": "UI_ItemIcon_114011"
+        },
+        {
+            "count": 6,
+            "icon": "UI_ItemIcon_114012"
+        },
+        {
+            "count": 225000,
+            "icon": "UI_ItemIcon_202"
+        }
+    ],
+    "name": "Skyward Spine",
+    "passive": {
+        "name": "Black Wing",
+        "refinements": {
+            "1": "Increases CRIT Rate by 8% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 40% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
+            "2": "Increases CRIT Rate by 10% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 55% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
+            "3": "Increases CRIT Rate by 12% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 70% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
+            "4": "Increases CRIT Rate by 14% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 85% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
+            "5": "Increases CRIT Rate by 16% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 100% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s."
+        }
+    },
+    "qualityType": "QUALITY_ORANGE",
+    "stats": {
+        "1": {
+            "Energy Recharge%": 8.0,
+            "atk": 48
+        },
+        "10": {
+            "Energy Recharge%": 10.9,
+            "atk": 87
+        },
+        "11": {
+            "Energy Recharge%": 10.9,
+            "atk": 92
+        },
+        "12": {
+            "Energy Recharge%": 10.9,
+            "atk": 96
+        },
+        "13": {
+            "Energy Recharge%": 10.9,
+            "atk": 101
+        },
+        "14": {
+            "Energy Recharge%": 10.9,
+            "atk": 106
+        },
+        "15": {
+            "Energy Recharge%": 12.5,
+            "atk": 110
+        },
+        "16": {
+            "Energy Recharge%": 12.5,
+            "atk": 115
+        },
+        "17": {
+            "Energy Recharge%": 12.5,
+            "atk": 119
+        },
+        "18": {
+            "Energy Recharge%": 12.5,
+            "atk": 124
+        },
+        "19": {
+            "Energy Recharge%": 12.5,
+            "atk": 129
+        },
+        "2": {
+            "Energy Recharge%": 8.0,
+            "atk": 52
+        },
+        "20": {
+            "Energy Recharge%": 14.1,
+            "atk": 133
+        },
+        "21": {
+            "Energy Recharge%": 14.1,
+            "atk": 169
+        },
+        "22": {
+            "Energy Recharge%": 14.1,
+            "atk": 174
+        },
+        "23": {
+            "Energy Recharge%": 14.1,
+            "atk": 179
+        },
+        "24": {
+            "Energy Recharge%": 14.1,
+            "atk": 183
+        },
+        "25": {
+            "Energy Recharge%": 15.8,
+            "atk": 188
+        },
+        "26": {
+            "Energy Recharge%": 15.8,
+            "atk": 193
+        },
+        "27": {
+            "Energy Recharge%": 15.8,
+            "atk": 197
+        },
+        "28": {
+            "Energy Recharge%": 15.8,
+            "atk": 202
+        },
+        "29": {
+            "Energy Recharge%": 15.8,
+            "atk": 207
+        },
+        "3": {
+            "Energy Recharge%": 8.0,
+            "atk": 56
+        },
+        "30": {
+            "Energy Recharge%": 17.4,
+            "atk": 212
+        },
+        "31": {
+            "Energy Recharge%": 17.4,
+            "atk": 217
+        },
+        "32": {
+            "Energy Recharge%": 17.4,
+            "atk": 221
+        },
+        "33": {
+            "Energy Recharge%": 17.4,
+            "atk": 226
+        },
+        "34": {
+            "Energy Recharge%": 17.4,
+            "atk": 231
+        },
+        "35": {
+            "Energy Recharge%": 19.0,
+            "atk": 236
+        },
+        "36": {
+            "Energy Recharge%": 19.0,
+            "atk": 241
+        },
+        "37": {
+            "Energy Recharge%": 19.0,
+            "atk": 246
+        },
+        "38": {
+            "Energy Recharge%": 19.0,
+            "atk": 251
+        },
+        "39": {
+            "Energy Recharge%": 19.0,
+            "atk": 256
+        },
+        "4": {
+            "Energy Recharge%": 8.0,
+            "atk": 61
+        },
+        "40": {
+            "Energy Recharge%": 20.6,
+            "atk": 261
+        },
+        "41": {
+            "Energy Recharge%": 20.6,
+            "atk": 297
+        },
+        "42": {
+            "Energy Recharge%": 20.6,
+            "atk": 302
+        },
+        "43": {
+            "Energy Recharge%": 20.6,
+            "atk": 306
+        },
+        "44": {
+            "Energy Recharge%": 20.6,
+            "atk": 311
+        },
+        "45": {
+            "Energy Recharge%": 22.2,
+            "atk": 316
+        },
+        "46": {
+            "Energy Recharge%": 22.2,
+            "atk": 321
+        },
+        "47": {
+            "Energy Recharge%": 22.2,
+            "atk": 326
+        },
+        "48": {
+            "Energy Recharge%": 22.2,
+            "atk": 331
+        },
+        "49": {
+            "Energy Recharge%": 22.2,
+            "atk": 336
+        },
+        "5": {
+            "Energy Recharge%": 9.3,
+            "atk": 65
+        },
+        "50": {
+            "Energy Recharge%": 23.8,
+            "atk": 341
+        },
+        "51": {
+            "Energy Recharge%": 23.8,
+            "atk": 378
+        },
+        "52": {
+            "Energy Recharge%": 23.8,
+            "atk": 383
+        },
+        "53": {
+            "Energy Recharge%": 23.8,
+            "atk": 388
+        },
+        "54": {
+            "Energy Recharge%": 23.8,
+            "atk": 393
+        },
+        "55": {
+            "Energy Recharge%": 25.4,
+            "atk": 398
+        },
+        "56": {
+            "Energy Recharge%": 25.4,
+            "atk": 403
+        },
+        "57": {
+            "Energy Recharge%": 25.4,
+            "atk": 408
+        },
+        "58": {
+            "Energy Recharge%": 25.4,
+            "atk": 413
+        },
+        "59": {
+            "Energy Recharge%": 25.4,
+            "atk": 418
+        },
+        "6": {
+            "Energy Recharge%": 9.3,
+            "atk": 69
+        },
+        "60": {
+            "Energy Recharge%": 27.1,
+            "atk": 423
+        },
+        "61": {
+            "Energy Recharge%": 27.1,
+            "atk": 460
+        },
+        "62": {
+            "Energy Recharge%": 27.1,
+            "atk": 465
+        },
+        "63": {
+            "Energy Recharge%": 27.1,
+            "atk": 470
+        },
+        "64": {
+            "Energy Recharge%": 27.1,
+            "atk": 475
+        },
+        "65": {
+            "Energy Recharge%": 28.7,
+            "atk": 480
+        },
+        "66": {
+            "Energy Recharge%": 28.7,
+            "atk": 485
+        },
+        "67": {
+            "Energy Recharge%": 28.7,
+            "atk": 491
+        },
+        "68": {
+            "Energy Recharge%": 28.7,
+            "atk": 496
+        },
+        "69": {
+            "Energy Recharge%": 28.7,
+            "atk": 501
+        },
+        "7": {
+            "Energy Recharge%": 9.3,
+            "atk": 74
+        },
+        "70": {
+            "Energy Recharge%": 30.3,
+            "atk": 506
+        },
+        "71": {
+            "Energy Recharge%": 30.3,
+            "atk": 543
+        },
+        "72": {
+            "Energy Recharge%": 30.3,
+            "atk": 548
+        },
+        "73": {
+            "Energy Recharge%": 30.3,
+            "atk": 553
+        },
+        "74": {
+            "Energy Recharge%": 30.3,
+            "atk": 558
+        },
+        "75": {
+            "Energy Recharge%": 31.9,
+            "atk": 563
+        },
+        "76": {
+            "Energy Recharge%": 31.9,
+            "atk": 569
+        },
+        "77": {
+            "Energy Recharge%": 31.9,
+            "atk": 574
+        },
+        "78": {
+            "Energy Recharge%": 31.9,
+            "atk": 579
+        },
+        "79": {
+            "Energy Recharge%": 31.9,
+            "atk": 585
+        },
+        "8": {
+            "Energy Recharge%": 9.3,
+            "atk": 78
+        },
+        "80": {
+            "Energy Recharge%": 33.5,
+            "atk": 590
+        },
+        "81": {
+            "Energy Recharge%": 33.5,
+            "atk": 626
+        },
+        "82": {
+            "Energy Recharge%": 33.5,
+            "atk": 632
+        },
+        "83": {
+            "Energy Recharge%": 33.5,
+            "atk": 637
+        },
+        "84": {
+            "Energy Recharge%": 33.5,
+            "atk": 642
+        },
+        "85": {
+            "Energy Recharge%": 35.1,
+            "atk": 648
+        },
+        "86": {
+            "Energy Recharge%": 35.1,
+            "atk": 653
+        },
+        "87": {
+            "Energy Recharge%": 35.1,
+            "atk": 658
+        },
+        "88": {
+            "Energy Recharge%": 35.1,
+            "atk": 664
+        },
+        "89": {
+            "Energy Recharge%": 35.1,
+            "atk": 669
+        },
+        "9": {
+            "Energy Recharge%": 9.3,
+            "atk": 83
+        },
+        "90": {
+            "Energy Recharge%": 36.8,
+            "atk": 674
+        }
+    },
+    "weaponDesc": "A polearm that symbolizes Dvalin's firm resolve. The upright shaft of this weapon points towards the heavens, clad in the might of sky and wind.",
+    "weaponIcon": "UI_EquipIcon_Pole_Dvalin",
+    "weaponType": "WEAPON_POLE"
+}

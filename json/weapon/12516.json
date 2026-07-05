@@ -1,0 +1,425 @@
+{
+    "ascension": [
+        {
+            "count": 15,
+            "icon": "UI_ItemIcon_112125"
+        },
+        {
+            "count": 23,
+            "icon": "UI_ItemIcon_112126"
+        },
+        {
+            "count": 27,
+            "icon": "UI_ItemIcon_112127"
+        },
+        {
+            "count": 23,
+            "icon": "UI_ItemIcon_112143"
+        },
+        {
+            "count": 27,
+            "icon": "UI_ItemIcon_112144"
+        },
+        {
+            "count": 41,
+            "icon": "UI_ItemIcon_112145"
+        },
+        {
+            "count": 5,
+            "icon": "UI_ItemIcon_114081"
+        },
+        {
+            "count": 14,
+            "icon": "UI_ItemIcon_114082"
+        },
+        {
+            "count": 14,
+            "icon": "UI_ItemIcon_114083"
+        },
+        {
+            "count": 6,
+            "icon": "UI_ItemIcon_114084"
+        },
+        {
+            "count": 225000,
+            "icon": "UI_ItemIcon_202"
+        }
+    ],
+    "name": "A Teaspoon of Transcendence",
+    "passive": {
+        "name": "White Fairy's Queening",
+        "refinements": {
+            "1": "ATK is increased by 28%.\\nAdditionally, each time the equipping character hits an opponent with their Charged Attack, they attain \"Transcendence\" for a short time: their Stellar-Conduct and Stellar Swirl DMG is increased by 16% for 5s. This effect can stack once every 0.2s, max 3 stacks.",
+            "2": "ATK is increased by 35%.\\nAdditionally, each time the equipping character hits an opponent with their Charged Attack, they attain \"Transcendence\" for a short time: their Stellar-Conduct and Stellar Swirl DMG is increased by 20% for 5s. This effect can stack once every 0.2s, max 3 stacks.",
+            "3": "ATK is increased by 42%.\\nAdditionally, each time the equipping character hits an opponent with their Charged Attack, they attain \"Transcendence\" for a short time: their Stellar-Conduct and Stellar Swirl DMG is increased by 24% for 5s. This effect can stack once every 0.2s, max 3 stacks.",
+            "4": "ATK is increased by 49%.\\nAdditionally, each time the equipping character hits an opponent with their Charged Attack, they attain \"Transcendence\" for a short time: their Stellar-Conduct and Stellar Swirl DMG is increased by 28% for 5s. This effect can stack once every 0.2s, max 3 stacks.",
+            "5": "ATK is increased by 56%.\\nAdditionally, each time the equipping character hits an opponent with their Charged Attack, they attain \"Transcendence\" for a short time: their Stellar-Conduct and Stellar Swirl DMG is increased by 32% for 5s. This effect can stack once every 0.2s, max 3 stacks."
+        }
+    },
+    "qualityType": "QUALITY_ORANGE",
+    "stats": {
+        "1": {
+            "CRIT DMG%": 9.6,
+            "atk": 48
+        },
+        "10": {
+            "CRIT DMG%": 13.1,
+            "atk": 87
+        },
+        "11": {
+            "CRIT DMG%": 13.1,
+            "atk": 92
+        },
+        "12": {
+            "CRIT DMG%": 13.1,
+            "atk": 96
+        },
+        "13": {
+            "CRIT DMG%": 13.1,
+            "atk": 101
+        },
+        "14": {
+            "CRIT DMG%": 13.1,
+            "atk": 106
+        },
+        "15": {
+            "CRIT DMG%": 15.0,
+            "atk": 110
+        },
+        "16": {
+            "CRIT DMG%": 15.0,
+            "atk": 115
+        },
+        "17": {
+            "CRIT DMG%": 15.0,
+            "atk": 119
+        },
+        "18": {
+            "CRIT DMG%": 15.0,
+            "atk": 124
+        },
+        "19": {
+            "CRIT DMG%": 15.0,
+            "atk": 129
+        },
+        "2": {
+            "CRIT DMG%": 9.6,
+            "atk": 52
+        },
+        "20": {
+            "CRIT DMG%": 17.0,
+            "atk": 133
+        },
+        "21": {
+            "CRIT DMG%": 17.0,
+            "atk": 169
+        },
+        "22": {
+            "CRIT DMG%": 17.0,
+            "atk": 174
+        },
+        "23": {
+            "CRIT DMG%": 17.0,
+            "atk": 179
+        },
+        "24": {
+            "CRIT DMG%": 17.0,
+            "atk": 183
+        },
+        "25": {
+            "CRIT DMG%": 18.9,
+            "atk": 188
+        },
+        "26": {
+            "CRIT DMG%": 18.9,
+            "atk": 193
+        },
+        "27": {
+            "CRIT DMG%": 18.9,
+            "atk": 197
+        },
+        "28": {
+            "CRIT DMG%": 18.9,
+            "atk": 202
+        },
+        "29": {
+            "CRIT DMG%": 18.9,
+            "atk": 207
+        },
+        "3": {
+            "CRIT DMG%": 9.6,
+            "atk": 56
+        },
+        "30": {
+            "CRIT DMG%": 20.8,
+            "atk": 212
+        },
+        "31": {
+            "CRIT DMG%": 20.8,
+            "atk": 217
+        },
+        "32": {
+            "CRIT DMG%": 20.8,
+            "atk": 221
+        },
+        "33": {
+            "CRIT DMG%": 20.8,
+            "atk": 226
+        },
+        "34": {
+            "CRIT DMG%": 20.8,
+            "atk": 231
+        },
+        "35": {
+            "CRIT DMG%": 22.8,
+            "atk": 236
+        },
+        "36": {
+            "CRIT DMG%": 22.8,
+            "atk": 241
+        },
+        "37": {
+            "CRIT DMG%": 22.8,
+            "atk": 246
+        },
+        "38": {
+            "CRIT DMG%": 22.8,
+            "atk": 251
+        },
+        "39": {
+            "CRIT DMG%": 22.8,
+            "atk": 256
+        },
+        "4": {
+            "CRIT DMG%": 9.6,
+            "atk": 61
+        },
+        "40": {
+            "CRIT DMG%": 24.7,
+            "atk": 261
+        },
+        "41": {
+            "CRIT DMG%": 24.7,
+            "atk": 297
+        },
+        "42": {
+            "CRIT DMG%": 24.7,
+            "atk": 302
+        },
+        "43": {
+            "CRIT DMG%": 24.7,
+            "atk": 306
+        },
+        "44": {
+            "CRIT DMG%": 24.7,
+            "atk": 311
+        },
+        "45": {
+            "CRIT DMG%": 26.7,
+            "atk": 316
+        },
+        "46": {
+            "CRIT DMG%": 26.7,
+            "atk": 321
+        },
+        "47": {
+            "CRIT DMG%": 26.7,
+            "atk": 326
+        },
+        "48": {
+            "CRIT DMG%": 26.7,
+            "atk": 331
+        },
+        "49": {
+            "CRIT DMG%": 26.7,
+            "atk": 336
+        },
+        "5": {
+            "CRIT DMG%": 11.2,
+            "atk": 65
+        },
+        "50": {
+            "CRIT DMG%": 28.6,
+            "atk": 341
+        },
+        "51": {
+            "CRIT DMG%": 28.6,
+            "atk": 378
+        },
+        "52": {
+            "CRIT DMG%": 28.6,
+            "atk": 383
+        },
+        "53": {
+            "CRIT DMG%": 28.6,
+            "atk": 388
+        },
+        "54": {
+            "CRIT DMG%": 28.6,
+            "atk": 393
+        },
+        "55": {
+            "CRIT DMG%": 30.5,
+            "atk": 398
+        },
+        "56": {
+            "CRIT DMG%": 30.5,
+            "atk": 403
+        },
+        "57": {
+            "CRIT DMG%": 30.5,
+            "atk": 408
+        },
+        "58": {
+            "CRIT DMG%": 30.5,
+            "atk": 413
+        },
+        "59": {
+            "CRIT DMG%": 30.5,
+            "atk": 418
+        },
+        "6": {
+            "CRIT DMG%": 11.2,
+            "atk": 69
+        },
+        "60": {
+            "CRIT DMG%": 32.5,
+            "atk": 423
+        },
+        "61": {
+            "CRIT DMG%": 32.5,
+            "atk": 460
+        },
+        "62": {
+            "CRIT DMG%": 32.5,
+            "atk": 465
+        },
+        "63": {
+            "CRIT DMG%": 32.5,
+            "atk": 470
+        },
+        "64": {
+            "CRIT DMG%": 32.5,
+            "atk": 475
+        },
+        "65": {
+            "CRIT DMG%": 34.4,
+            "atk": 480
+        },
+        "66": {
+            "CRIT DMG%": 34.4,
+            "atk": 485
+        },
+        "67": {
+            "CRIT DMG%": 34.4,
+            "atk": 491
+        },
+        "68": {
+            "CRIT DMG%": 34.4,
+            "atk": 496
+        },
+        "69": {
+            "CRIT DMG%": 34.4,
+            "atk": 501
+        },
+        "7": {
+            "CRIT DMG%": 11.2,
+            "atk": 74
+        },
+        "70": {
+            "CRIT DMG%": 36.3,
+            "atk": 506
+        },
+        "71": {
+            "CRIT DMG%": 36.3,
+            "atk": 543
+        },
+        "72": {
+            "CRIT DMG%": 36.3,
+            "atk": 548
+        },
+        "73": {
+            "CRIT DMG%": 36.3,
+            "atk": 553
+        },
+        "74": {
+            "CRIT DMG%": 36.3,
+            "atk": 558
+        },
+        "75": {
+            "CRIT DMG%": 38.3,
+            "atk": 563
+        },
+        "76": {
+            "CRIT DMG%": 38.3,
+            "atk": 569
+        },
+        "77": {
+            "CRIT DMG%": 38.3,
+            "atk": 574
+        },
+        "78": {
+            "CRIT DMG%": 38.3,
+            "atk": 579
+        },
+        "79": {
+            "CRIT DMG%": 38.3,
+            "atk": 585
+        },
+        "8": {
+            "CRIT DMG%": 11.2,
+            "atk": 78
+        },
+        "80": {
+            "CRIT DMG%": 40.2,
+            "atk": 590
+        },
+        "81": {
+            "CRIT DMG%": 40.2,
+            "atk": 626
+        },
+        "82": {
+            "CRIT DMG%": 40.2,
+            "atk": 632
+        },
+        "83": {
+            "CRIT DMG%": 40.2,
+            "atk": 637
+        },
+        "84": {
+            "CRIT DMG%": 40.2,
+            "atk": 642
+        },
+        "85": {
+            "CRIT DMG%": 42.2,
+            "atk": 648
+        },
+        "86": {
+            "CRIT DMG%": 42.2,
+            "atk": 653
+        },
+        "87": {
+            "CRIT DMG%": 42.2,
+            "atk": 658
+        },
+        "88": {
+            "CRIT DMG%": 42.2,
+            "atk": 664
+        },
+        "89": {
+            "CRIT DMG%": 42.2,
+            "atk": 669
+        },
+        "9": {
+            "CRIT DMG%": 11.2,
+            "atk": 83
+        },
+        "90": {
+            "CRIT DMG%": 44.1,
+            "atk": 674
+        }
+    },
+    "weaponDesc": "An object of fantasy with countless definitions amidst an endless sea of stories. On the grand scale of the universe or the realm of dreams, there is no real difference between the holy sword of the brave warrior and the princess's teaspoon, or between the ice-cold clockspring and the key that will unlock the gates of transcendence...",
+    "weaponIcon": "UI_EquipIcon_Claymore_CrystallineSword",
+    "weaponType": "WEAPON_CLAYMORE"
+}

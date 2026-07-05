@@ -1,0 +1,425 @@
+{
+    "ascension": [
+        {
+            "count": 15,
+            "icon": "UI_ItemIcon_112011"
+        },
+        {
+            "count": 23,
+            "icon": "UI_ItemIcon_112012"
+        },
+        {
+            "count": 27,
+            "icon": "UI_ItemIcon_112013"
+        },
+        {
+            "count": 23,
+            "icon": "UI_ItemIcon_112020"
+        },
+        {
+            "count": 27,
+            "icon": "UI_ItemIcon_112021"
+        },
+        {
+            "count": 41,
+            "icon": "UI_ItemIcon_112022"
+        },
+        {
+            "count": 5,
+            "icon": "UI_ItemIcon_114005"
+        },
+        {
+            "count": 14,
+            "icon": "UI_ItemIcon_114006"
+        },
+        {
+            "count": 14,
+            "icon": "UI_ItemIcon_114007"
+        },
+        {
+            "count": 6,
+            "icon": "UI_ItemIcon_114008"
+        },
+        {
+            "count": 225000,
+            "icon": "UI_ItemIcon_202"
+        }
+    ],
+    "name": "Skyward Atlas",
+    "passive": {
+        "name": "Wandering Clouds",
+        "refinements": {
+            "1": "Increases Elemental DMG Bonus by 12%. Normal Attack hits have a 50% chance to earn the favor of the clouds, which actively seek out nearby opponents to attack for 15s, dealing 160% ATK DMG. Can only occur once every 30s.",
+            "2": "Increases Elemental DMG Bonus by 15%. Normal Attack hits have a 50% chance to earn the favor of the clouds, which actively seek out nearby opponents to attack for 15s, dealing 200% ATK DMG. Can only occur once every 30s.",
+            "3": "Increases Elemental DMG Bonus by 18%. Normal Attack hits have a 50% chance to earn the favor of the clouds, which actively seek out nearby opponents to attack for 15s, dealing 240% ATK DMG. Can only occur once every 30s.",
+            "4": "Increases Elemental DMG Bonus by 21%. Normal Attack hits have a 50% chance to earn the favor of the clouds, which actively seek out nearby opponents to attack for 15s, dealing 280% ATK DMG. Can only occur once every 30s.",
+            "5": "Increases Elemental DMG Bonus by 24%. Normal Attack hits have a 50% chance to earn the favor of the clouds, which actively seek out nearby opponents to attack for 15s, dealing 320% ATK DMG. Can only occur once every 30s."
+        }
+    },
+    "qualityType": "QUALITY_ORANGE",
+    "stats": {
+        "1": {
+            "ATK%": 7.2,
+            "atk": 48
+        },
+        "10": {
+            "ATK%": 9.8,
+            "atk": 87
+        },
+        "11": {
+            "ATK%": 9.8,
+            "atk": 92
+        },
+        "12": {
+            "ATK%": 9.8,
+            "atk": 96
+        },
+        "13": {
+            "ATK%": 9.8,
+            "atk": 101
+        },
+        "14": {
+            "ATK%": 9.8,
+            "atk": 106
+        },
+        "15": {
+            "ATK%": 11.3,
+            "atk": 110
+        },
+        "16": {
+            "ATK%": 11.3,
+            "atk": 115
+        },
+        "17": {
+            "ATK%": 11.3,
+            "atk": 119
+        },
+        "18": {
+            "ATK%": 11.3,
+            "atk": 124
+        },
+        "19": {
+            "ATK%": 11.3,
+            "atk": 129
+        },
+        "2": {
+            "ATK%": 7.2,
+            "atk": 52
+        },
+        "20": {
+            "ATK%": 12.7,
+            "atk": 133
+        },
+        "21": {
+            "ATK%": 12.7,
+            "atk": 169
+        },
+        "22": {
+            "ATK%": 12.7,
+            "atk": 174
+        },
+        "23": {
+            "ATK%": 12.7,
+            "atk": 179
+        },
+        "24": {
+            "ATK%": 12.7,
+            "atk": 183
+        },
+        "25": {
+            "ATK%": 14.2,
+            "atk": 188
+        },
+        "26": {
+            "ATK%": 14.2,
+            "atk": 193
+        },
+        "27": {
+            "ATK%": 14.2,
+            "atk": 197
+        },
+        "28": {
+            "ATK%": 14.2,
+            "atk": 202
+        },
+        "29": {
+            "ATK%": 14.2,
+            "atk": 207
+        },
+        "3": {
+            "ATK%": 7.2,
+            "atk": 56
+        },
+        "30": {
+            "ATK%": 15.6,
+            "atk": 212
+        },
+        "31": {
+            "ATK%": 15.6,
+            "atk": 217
+        },
+        "32": {
+            "ATK%": 15.6,
+            "atk": 221
+        },
+        "33": {
+            "ATK%": 15.6,
+            "atk": 226
+        },
+        "34": {
+            "ATK%": 15.6,
+            "atk": 231
+        },
+        "35": {
+            "ATK%": 17.1,
+            "atk": 236
+        },
+        "36": {
+            "ATK%": 17.1,
+            "atk": 241
+        },
+        "37": {
+            "ATK%": 17.1,
+            "atk": 246
+        },
+        "38": {
+            "ATK%": 17.1,
+            "atk": 251
+        },
+        "39": {
+            "ATK%": 17.1,
+            "atk": 256
+        },
+        "4": {
+            "ATK%": 7.2,
+            "atk": 61
+        },
+        "40": {
+            "ATK%": 18.5,
+            "atk": 261
+        },
+        "41": {
+            "ATK%": 18.5,
+            "atk": 297
+        },
+        "42": {
+            "ATK%": 18.5,
+            "atk": 302
+        },
+        "43": {
+            "ATK%": 18.5,
+            "atk": 306
+        },
+        "44": {
+            "ATK%": 18.5,
+            "atk": 311
+        },
+        "45": {
+            "ATK%": 20.0,
+            "atk": 316
+        },
+        "46": {
+            "ATK%": 20.0,
+            "atk": 321
+        },
+        "47": {
+            "ATK%": 20.0,
+            "atk": 326
+        },
+        "48": {
+            "ATK%": 20.0,
+            "atk": 331
+        },
+        "49": {
+            "ATK%": 20.0,
+            "atk": 336
+        },
+        "5": {
+            "ATK%": 8.4,
+            "atk": 65
+        },
+        "50": {
+            "ATK%": 21.4,
+            "atk": 341
+        },
+        "51": {
+            "ATK%": 21.4,
+            "atk": 378
+        },
+        "52": {
+            "ATK%": 21.4,
+            "atk": 383
+        },
+        "53": {
+            "ATK%": 21.4,
+            "atk": 388
+        },
+        "54": {
+            "ATK%": 21.4,
+            "atk": 393
+        },
+        "55": {
+            "ATK%": 22.9,
+            "atk": 398
+        },
+        "56": {
+            "ATK%": 22.9,
+            "atk": 403
+        },
+        "57": {
+            "ATK%": 22.9,
+            "atk": 408
+        },
+        "58": {
+            "ATK%": 22.9,
+            "atk": 413
+        },
+        "59": {
+            "ATK%": 22.9,
+            "atk": 418
+        },
+        "6": {
+            "ATK%": 8.4,
+            "atk": 69
+        },
+        "60": {
+            "ATK%": 24.4,
+            "atk": 423
+        },
+        "61": {
+            "ATK%": 24.4,
+            "atk": 460
+        },
+        "62": {
+            "ATK%": 24.4,
+            "atk": 465
+        },
+        "63": {
+            "ATK%": 24.4,
+            "atk": 470
+        },
+        "64": {
+            "ATK%": 24.4,
+            "atk": 475
+        },
+        "65": {
+            "ATK%": 25.8,
+            "atk": 480
+        },
+        "66": {
+            "ATK%": 25.8,
+            "atk": 485
+        },
+        "67": {
+            "ATK%": 25.8,
+            "atk": 491
+        },
+        "68": {
+            "ATK%": 25.8,
+            "atk": 496
+        },
+        "69": {
+            "ATK%": 25.8,
+            "atk": 501
+        },
+        "7": {
+            "ATK%": 8.4,
+            "atk": 74
+        },
+        "70": {
+            "ATK%": 27.3,
+            "atk": 506
+        },
+        "71": {
+            "ATK%": 27.3,
+            "atk": 543
+        },
+        "72": {
+            "ATK%": 27.3,
+            "atk": 548
+        },
+        "73": {
+            "ATK%": 27.3,
+            "atk": 553
+        },
+        "74": {
+            "ATK%": 27.3,
+            "atk": 558
+        },
+        "75": {
+            "ATK%": 28.7,
+            "atk": 563
+        },
+        "76": {
+            "ATK%": 28.7,
+            "atk": 569
+        },
+        "77": {
+            "ATK%": 28.7,
+            "atk": 574
+        },
+        "78": {
+            "ATK%": 28.7,
+            "atk": 579
+        },
+        "79": {
+            "ATK%": 28.7,
+            "atk": 585
+        },
+        "8": {
+            "ATK%": 8.4,
+            "atk": 78
+        },
+        "80": {
+            "ATK%": 30.2,
+            "atk": 590
+        },
+        "81": {
+            "ATK%": 30.2,
+            "atk": 626
+        },
+        "82": {
+            "ATK%": 30.2,
+            "atk": 632
+        },
+        "83": {
+            "ATK%": 30.2,
+            "atk": 637
+        },
+        "84": {
+            "ATK%": 30.2,
+            "atk": 642
+        },
+        "85": {
+            "ATK%": 31.6,
+            "atk": 648
+        },
+        "86": {
+            "ATK%": 31.6,
+            "atk": 653
+        },
+        "87": {
+            "ATK%": 31.6,
+            "atk": 658
+        },
+        "88": {
+            "ATK%": 31.6,
+            "atk": 664
+        },
+        "89": {
+            "ATK%": 31.6,
+            "atk": 669
+        },
+        "9": {
+            "ATK%": 8.4,
+            "atk": 83
+        },
+        "90": {
+            "ATK%": 33.1,
+            "atk": 674
+        }
+    },
+    "weaponDesc": "A cloud atlas symbolizing Dvalin and his former master, the Anemo Archon. It details the winds and clouds of the northern regions and contains the powers of the sky and wind.",
+    "weaponIcon": "UI_EquipIcon_Catalyst_Dvalin",
+    "weaponType": "WEAPON_CATALYST"
+}
