@@ -1,11 +1,26 @@
 {
     "info": {
         "pieces": {
-            "circlet": { "icon": "UI_RelicIcon_15048_3", "name": "0" },
-            "flower": { "icon": "UI_RelicIcon_15048_4", "name": "0" },
-            "goblet": { "icon": "UI_RelicIcon_15048_1", "name": "0" },
-            "plume": { "icon": "UI_RelicIcon_15048_2", "name": "0" },
-            "sands": { "icon": "UI_RelicIcon_15048_5", "name": "0" }
+            "circlet": {
+                "icon": "UI_RelicIcon_15048_3",
+                "name": "0"
+            },
+            "flower": {
+                "icon": "UI_RelicIcon_15048_4",
+                "name": "0"
+            },
+            "goblet": {
+                "icon": "UI_RelicIcon_15048_1",
+                "name": "0"
+            },
+            "plume": {
+                "icon": "UI_RelicIcon_15048_2",
+                "name": "0"
+            },
+            "sands": {
+                "icon": "UI_RelicIcon_15048_5",
+                "name": "0"
+            }
         },
         "qualityType": "QUALITY_ORANGE",
         "setBonuses": {
@@ -22,14 +37,20 @@
                         "stat": "ATK_PERCENT",
                         "value": 0.12,
                         "trigger": "OnReactionTrigger",
-                        "reaction": ["StellarConduct", "StellarSwirl"],
+                        "reaction": [
+                            "StellarConduct",
+                            "StellarSwirl"
+                        ],
                         "target": "Self",
                         "canTriggerOffField": true,
                         "stacks": false
                     },
                     {
                         "stat": "REACTION_DMG_PERCENT",
-                        "reaction": ["StellarConduct", "StellarSwirl"],
+                        "reaction": [
+                            "StellarConduct",
+                            "StellarSwirl"
+                        ],
                         "value": 0.50,
                         "trigger": "OnReactionTrigger",
                         "target": "NearbyPartyMembers",

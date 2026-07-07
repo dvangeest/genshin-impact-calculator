@@ -4,6 +4,7 @@
     "weaponType": "WEAPON_CATALYST",
     "element": "Pyro",
     "ascensionBonusStat": "ATK%",
+    "icon": "UI_Gacha_AvatarIcon_Nicole",
     "statCurve": {
         "levels": {
             "1": {

@@ -4,6 +4,7 @@
     "weaponType": "WEAPON_CLAYMORE",
     "element": "Cryo",
     "ascensionBonusStat": "CRIT DMG%",
+    "icon": "UI_Gacha_AvatarIcon_MarionetteNew",
     "statCurve": {
         "levels": {
             "1": {

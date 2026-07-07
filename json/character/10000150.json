@@ -4,6 +4,7 @@
     "weaponType": "WEAPON_SWORD_ONE_HAND",
     "element": "Cryo",
     "ascensionBonusStat": "CRIT DMG%",
+    "icon": "UI_Gacha_AvatarIcon_Odette",
     "statCurve": {
         "levels": {
             "1": {

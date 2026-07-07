@@ -1,11 +1,26 @@
 {
     "info": {
         "pieces": {
-            "circlet": { "icon": "UI_RelicIcon_15032_3", "name": "Golden Troupe's Reward" },
-            "flower": { "icon": "UI_RelicIcon_15032_4", "name": "Golden Song's Variation" },
-            "goblet": { "icon": "UI_RelicIcon_15032_1", "name": "Golden Night's Bustle" },
-            "plume": { "icon": "UI_RelicIcon_15032_2", "name": "Golden Bird's Shedding" },
-            "sands": { "icon": "UI_RelicIcon_15032_5", "name": "Golden Era's Prelude" }
+            "circlet": {
+                "icon": "UI_RelicIcon_15032_3",
+                "name": "Golden Troupe's Reward"
+            },
+            "flower": {
+                "icon": "UI_RelicIcon_15032_4",
+                "name": "Golden Song's Variation"
+            },
+            "goblet": {
+                "icon": "UI_RelicIcon_15032_1",
+                "name": "Golden Night's Bustle"
+            },
+            "plume": {
+                "icon": "UI_RelicIcon_15032_2",
+                "name": "Golden Bird's Shedding"
+            },
+            "sands": {
+                "icon": "UI_RelicIcon_15032_5",
+                "name": "Golden Era's Prelude"
+            }
         },
         "qualityType": "QUALITY_ORANGE",
         "setBonuses": {

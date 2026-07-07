@@ -4,6 +4,7 @@
     "weaponType": "WEAPON_CATALYST",
     "element": "Electro",
     "ascensionBonusStat": "CRIT Rate%",
+    "icon": "UI_Gacha_AvatarIcon_Yae",
     "statCurve": {
         "levels": {
             "1": {

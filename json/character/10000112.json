@@ -4,6 +4,7 @@
     "weaponType": "WEAPON_POLE",
     "element": "Cryo",
     "ascensionBonusStat": "ATK%",
+    "icon": "UI_Gacha_AvatarIcon_Escoffier",
     "statCurve": {
         "levels": {
             "1": {

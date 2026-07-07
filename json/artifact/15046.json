@@ -1,11 +1,26 @@
 {
     "info": {
         "pieces": {
-            "circlet": { "icon": "UI_RelicIcon_15046_3", "name": "Pendulum That Ceased Amidst a Great Fall" },
-            "flower": { "icon": "UI_RelicIcon_15046_4", "name": "Iridescence That Ceased Amidst Glory" },
-            "goblet": { "icon": "UI_RelicIcon_15046_1", "name": "Ovations That Ceased Upon Festivity" },
-            "plume": { "icon": "UI_RelicIcon_15046_2", "name": "Sharpness That Ceased Upon Wondrous Creation" },
-            "sands": { "icon": "UI_RelicIcon_15046_5", "name": "Moment That Ceased Upon Waking From Grand Dreams" }
+            "circlet": {
+                "icon": "UI_RelicIcon_15046_3",
+                "name": "Pendulum That Ceased Amidst a Great Fall"
+            },
+            "flower": {
+                "icon": "UI_RelicIcon_15046_4",
+                "name": "Iridescence That Ceased Amidst Glory"
+            },
+            "goblet": {
+                "icon": "UI_RelicIcon_15046_1",
+                "name": "Ovations That Ceased Upon Festivity"
+            },
+            "plume": {
+                "icon": "UI_RelicIcon_15046_2",
+                "name": "Sharpness That Ceased Upon Wondrous Creation"
+            },
+            "sands": {
+                "icon": "UI_RelicIcon_15046_5",
+                "name": "Moment That Ceased Upon Waking From Grand Dreams"
+            }
         },
         "qualityType": "QUALITY_ORANGE",
         "setBonuses": {
