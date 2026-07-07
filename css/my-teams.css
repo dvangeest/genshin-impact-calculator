@@ -1,0 +1,142 @@
+/* Companion styles for the team builder flow on teams.html.
+   Reuses .weapon-list-item / modal fade+rise animations from
+   css/my-weapons.css — this file only adds what's specific to
+   the team builder (slot grid, resonance cards, member portraits). */
+
+.team-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+@media (min-width: 480px) {
+    .team-slot-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.team-slot-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.9rem 0.5rem;
+    border-radius: 0.75rem;
+    border: 1.5px dashed hsl(var(--border));
+    background-color: hsl(var(--secondary) / 0.3);
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    min-height: 108px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.team-slot-btn:hover {
+    border-color: hsl(var(--primary) / 0.6);
+    background-color: hsl(var(--secondary) / 0.6);
+}
+
+.team-slot-btn.filled {
+    border-style: solid;
+    border-color: hsl(var(--primary) / 0.5);
+}
+
+.team-slot-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    background-color: hsl(var(--muted));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.team-slot-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.team-slot-sub {
+    font-size: 0.65rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.team-slot-empty-label {
+    font-size: 0.75rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.team-resonance-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.team-resonance-card {
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--primary) / 0.35);
+    background-color: hsl(var(--primary) / 0.08);
+    padding: 0.6rem 0.75rem;
+}
+
+.team-resonance-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: hsl(var(--primary));
+}
+
+.team-resonance-desc {
+    font-size: 0.7rem;
+    color: hsl(var(--muted-foreground));
+    margin-top: 0.15rem;
+}
+
+.team-resonance-empty {
+    font-size: 0.75rem;
+    color: hsl(var(--muted-foreground) / 0.7);
+    font-style: italic;
+}
+
+.team-card-members {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+}
+
+.team-card-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+}
+
+.team-card-member-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    background-color: hsl(var(--muted));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.team-card-member-name {
+    font-size: 0.65rem;
+    line-height: 1.1;
+}
+
+#team-create-modal,
+#character-select-for-team-modal {
+    animation: weapon-modal-fade-in 0.15s ease-out;
+}
+
+#team-create-modal .modal-panel,
+#character-select-for-team-modal .modal-panel {
+    animation: weapon-modal-rise-in 0.18s ease-out;
+}

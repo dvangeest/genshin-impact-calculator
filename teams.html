@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genshin Impact Team Damage Calculator — Teams</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my-artifacts.css">
+    <link rel="stylesheet" href="css/my-weapons.css">
+    <link rel="stylesheet" href="css/my-characters.css">
+    <link rel="stylesheet" href="css/my-teams.css">
 </head>
 
 <body>
@@ -22,48 +26,92 @@
                     <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
                     <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
                     <a href="teams.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Teams</a>
+                    <a href="calculator.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Calculator</a>
                 </nav>
             </div>
         </header>
 
         <main class="container py-8">
 
-            <!-- ============ TEAMS ============ -->
-            <section id="page-teams" class="tab-page">
-                <h2 class="text-3xl font-bold mb-6">Team Builder</h2>
-
-                <div class="rounded-xl border border-border bg-card p-6 mb-8">
-                    <p class="text-sm text-muted-foreground mb-4">Select up to 4 characters to build your team.</p>
-                    <div class="grid grid-cols-4 gap-4 max-w-lg">
-                        <div
-                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
-                            <span class="text-3xl font-light">+</span>
-                        </div>
-                        <div
-                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
-                            <span class="text-3xl font-light">+</span>
-                        </div>
-                        <div
-                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
-                            <span class="text-3xl font-light">+</span>
-                        </div>
-                        <div
-                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
-                            <span class="text-3xl font-light">+</span>
-                        </div>
+            <!-- ============ MY TEAMS ============ -->
+            <section id="page-teams" class="mb-12">
+                <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                        <h2 class="text-3xl font-bold">My Teams</h2>
+                        <p class="text-sm text-muted-foreground mt-1">Teams you've built, saved to this browser.</p>
                     </div>
+                    <button id="open-team-create-modal-btn"
+                        class="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+                        + Add Team
+                    </button>
                 </div>
 
-                <div class="rounded-xl border border-border bg-card p-6">
-                    <h3 class="text-lg font-semibold mb-2">Team DPS</h3>
-                    <p class="text-4xl font-black text-primary">—</p>
-                    <p class="text-xs text-muted-foreground mt-1">Add characters and weapons to calculate</p>
+                <!-- Empty state -->
+                <div id="my-teams-empty-state" class="rounded-xl border border-dashed border-border p-12 text-center hidden">
+                    <p class="text-muted-foreground">No teams yet.</p>
+                    <p class="text-sm text-muted-foreground/70 mt-1">Build your first team of 4 characters to see their Team Resonance.</p>
                 </div>
+
+                <!-- My Teams grid (rendered by js/myTeams.js) -->
+                <div id="my-teams-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
             </section>
 
         </main>
     </div>
 
+    <!-- ============ TEAM CREATE / CONFIGURE MODAL ============ -->
+    <div id="team-create-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div id="team-create-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <div class="modal-panel relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 id="team-create-title" class="text-lg font-semibold">Build Team</h3>
+                <button id="close-team-create-modal-btn" class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+
+            <div id="team-create-error" class="hidden mb-4 rounded-md border border-destructive/50 bg-red-500/10 px-3 py-2 text-xs text-red-400"></div>
+
+            <div class="space-y-5">
+
+                <!-- Character slots -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Characters (4)</label>
+                    <div id="team-slot-grid" class="team-slot-grid"></div>
+                </div>
+
+                <!-- Team Resonance preview -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Team Resonance</label>
+                    <div id="team-resonance-panel" class="team-resonance-panel"></div>
+                </div>
+
+            </div>
+
+            <div class="flex items-center gap-3 mt-6">
+                <button id="create-team-btn" disabled
+                    class="flex-1 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-primary">
+                    Create Team
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ CHARACTER SELECT (FOR TEAM) MODAL ============ -->
+    <div id="character-select-for-team-modal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div id="character-select-for-team-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <div class="modal-panel relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold">Select a Character</h3>
+                <button id="close-character-select-for-team-modal-btn" class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+            <div id="character-select-for-team-list" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <script src="js/characterData.js"></script>
+    <script src="js/weaponData.js"></script>
+    <script src="js/myTeams.js"></script>
     <script src="js/main.js"></script>
 </body>
 
