@@ -42,6 +42,12 @@ function getCharacterTalentBonusMap(character) {
  * current constellation. Clamps to TALENT_LEVEL_BASE_MAX when no bonus
  * applies or the required constellation hasn't been reached yet.
  */
+function getTalentMinLevel(character, talentKey, constellation) {
+    const bonus = getCharacterTalentBonusMap(character)[talentKey];
+    if (!bonus) return 1;
+    return constellation >= bonus.constellation ? bonus.value + 1 : 1;
+}
+
 function getTalentMaxLevel(character, talentKey, constellation) {
     const bonus = getCharacterTalentBonusMap(character)[talentKey];
     if (!bonus) return TALENT_LEVEL_BASE_MAX;
@@ -63,12 +69,12 @@ function getCharacterSpecialStatKey(character) {
 
 /**
  * Interpolates base HP/ATK/DEF/special-stat between the nearest defined
- * breakpoints in statCurve.levels for an arbitrary level 1-90.
+ * breakpoints in statCurve.levels for an arbitrary level 1-100.
  */
 function getCharacterStatsAtLevel(character, level) {
     const levels = character.statCurve.levels;
-    const keys = Object.keys(levels).map(Number).filter((l) => l <= 90).sort((a, b) => a - b);
-    const lvl = Math.min(Math.max(parseInt(level, 10) || 1, 1), 90);
+    const keys = Object.keys(levels).map(Number).filter((l) => l <= 100).sort((a, b) => a - b);
+    const lvl = Math.min(Math.max(parseInt(level, 10) || 1, 1), 100);
 
     if (lvl <= keys[0]) return levels[String(keys[0])];
     if (lvl >= keys[keys.length - 1]) return levels[String(keys[keys.length - 1])];

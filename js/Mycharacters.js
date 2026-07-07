@@ -222,12 +222,13 @@ function renderTalentFields(character, constellation, existingLevels) {
     const keys = Object.keys(character.talents);
 
     container.innerHTML = keys.map((key) => {
+        const min = getTalentMinLevel(character, key, constellation);
         const max = getTalentMaxLevel(character, key, constellation);
-        const current = clamp((existingLevels && existingLevels[key]) || 1, 1, max);
+        const current = clamp((existingLevels && existingLevels[key]) || min, min, max);
         return `
       <div class="talent-level-row" data-talent-key="${key}">
         <span class="talent-level-name">${character.talents[key].name}</span>
-        <input type="number" min="1" max="${max}" value="${current}"
+        <input type="number" min="${min}" max="${max}" value="${current}"
           class="talent-level-input field-input h-9 rounded-md border border-input bg-transparent px-2 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
           data-talent-key="${key}">
       </div>`;
@@ -236,9 +237,10 @@ function renderTalentFields(character, constellation, existingLevels) {
     container.querySelectorAll('.talent-level-input').forEach((input) => {
         input.addEventListener('input', () => {
             const max = parseInt(input.max, 10);
+            const min = parseInt(input.min, 10) || 1;
             let val = parseInt(input.value, 10);
-            if (!Number.isFinite(val)) val = 1;
-            input.value = clamp(val, 1, max);
+            if (!Number.isFinite(val)) val = min;
+            input.value = clamp(val, min, max);
         });
     });
 }
@@ -288,6 +290,14 @@ function updateCharacterPreview() {
     const level = parseInt(document.getElementById('character-level-input').value, 10) || 1;
     const stats = computeAggregatedStats(character, level, currentDraft.weaponEntryId, currentDraft.artifacts);
     renderCharacterStatGrid(stats);
+}
+
+function handleCharacterLevelInput() {
+    const input = document.getElementById('character-level-input');
+    let val = parseInt(input.value, 10);
+    if (!Number.isFinite(val)) val = 1;
+    input.value = clamp(val, 1, 100);
+    updateCharacterPreview();
 }
 
 function updateSelectedWeaponLabel() {
@@ -361,8 +371,9 @@ function handleCreateCharacter() {
     const level = parseInt(document.getElementById('character-level-input').value, 10);
     const constellation = getConstellationValue();
 
-    if (!Number.isFinite(level) || level < 1 || level > 90) {
-        errorEl.textContent = 'Level must be between 1 and 90.';
+    // in handleCreateCharacter():
+    if (!Number.isFinite(level) || level < 1 || level > 100) {
+        errorEl.textContent = 'Level must be between 1 and 100.';
         errorEl.classList.remove('hidden');
         return;
     }
@@ -558,7 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('close-character-create-modal-btn').addEventListener('click', closeCharacterCreateModal);
     document.getElementById('character-create-overlay').addEventListener('click', closeCharacterCreateModal);
-    document.getElementById('character-level-input').addEventListener('input', updateCharacterPreview);
+    document.getElementById('character-level-input').addEventListener('input', handleCharacterLevelInput);
     document.getElementById('character-constellation-input').addEventListener('input', handleConstellationChange);
     document.getElementById('open-weapon-select-for-character-btn').addEventListener('click', openWeaponSelectForCharacterModal);
     document.getElementById('create-character-btn').addEventListener('click', handleCreateCharacter);

@@ -2,10 +2,6 @@ const STORAGE_KEY = 'gi_calc_my_artifacts';
 
 const SUBSTAT_ROW_COUNT = 4;
 
-function getArtifactSetById(id) {
-  return ARTIFACT_SETS.find((set) => set.id === id);
-}
-
 function loadArtifacts() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);

@@ -100,3 +100,7 @@ const SUB_STAT_OPTIONS = [
 
 const ARTIFACT_LEVEL_DEFAULT = 20;
 const ARTIFACT_LEVEL_MAX = 20;
+
+function getArtifactSetById(id) {
+  return ARTIFACT_SETS.find((set) => set.id === id);
+}
