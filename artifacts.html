@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Team Damage Calculator — Artifacts</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="min-h-screen bg-background text-foreground">
+
+        <!-- HEADER / TAB NAV -->
+        <header class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+            <div class="container flex items-center justify-between py-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-black tracking-tight">GENSHIN<span class="text-primary">CALC</span></span>
+                </div>
+                <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
+                    <a href="index.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
+                    <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
+                    <a href="artifacts.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Artifacts</a>
+                    <a href="teams.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container py-8">
+
+            <!-- ============ ARTIFACTS ============ -->
+            <section id="page-artifacts" class="tab-page">
+                <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
+                    <h2 class="text-3xl font-bold">Artifacts</h2>
+                    <div class="flex flex-wrap gap-2" id="artifact-filters">
+                        <button
+                            class="filter-button active px-3 py-1.5 rounded-md border border-border text-sm">All</button>
+                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">4-Piece
+                            Sets</button>
+                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">2-Piece
+                            Only</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <div
+                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
+                        <div
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            Icon</div>
+                        <div class="text-center">
+                            <p class="font-semibold text-sm">Golden Troupe</p>
+                            <p class="text-xs text-muted-foreground line-clamp-2">Skill DMG +20%</p>
+                        </div>
+                        <button
+                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
+                    </div>
+
+                    <div
+                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
+                        <div
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            Icon</div>
+                        <div class="text-center">
+                            <p class="font-semibold text-sm">Noblesse Oblige</p>
+                            <p class="text-xs text-muted-foreground line-clamp-2">Burst DMG +20%</p>
+                        </div>
+                        <button
+                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
+                    </div>
+
+                    <div
+                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
+                        <div
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            Icon</div>
+                        <div class="text-center">
+                            <p class="font-semibold text-sm">Disenchantment in Deep Shadow</p>
+                            <p class="text-xs text-muted-foreground line-clamp-2">ATK +18%</p>
+                        </div>
+                        <button
+                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
+                    </div>
+
+                    <div
+                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer opacity-70">
+                        <div
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            ?</div>
+                        <div class="text-center">
+                            <p class="font-semibold text-sm">???</p>
+                            <p class="text-xs text-muted-foreground line-clamp-2">ATK +18%</p>
+                            <p class="text-[10px] text-yellow-500/80 uppercase tracking-wide mt-0.5">Unreleased</p>
+                        </div>
+                        <button
+                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

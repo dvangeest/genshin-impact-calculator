@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Team Damage Calculator — Teams</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="min-h-screen bg-background text-foreground">
+
+        <!-- HEADER / TAB NAV -->
+        <header class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+            <div class="container flex items-center justify-between py-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-black tracking-tight">GENSHIN<span class="text-primary">CALC</span></span>
+                </div>
+                <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
+                    <a href="index.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
+                    <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
+                    <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
+                    <a href="teams.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Teams</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container py-8">
+
+            <!-- ============ TEAMS ============ -->
+            <section id="page-teams" class="tab-page">
+                <h2 class="text-3xl font-bold mb-6">Team Builder</h2>
+
+                <div class="rounded-xl border border-border bg-card p-6 mb-8">
+                    <p class="text-sm text-muted-foreground mb-4">Select up to 4 characters to build your team.</p>
+                    <div class="grid grid-cols-4 gap-4 max-w-lg">
+                        <div
+                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
+                            <span class="text-3xl font-light">+</span>
+                        </div>
+                        <div
+                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
+                            <span class="text-3xl font-light">+</span>
+                        </div>
+                        <div
+                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
+                            <span class="text-3xl font-light">+</span>
+                        </div>
+                        <div
+                            class="aspect-square rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer">
+                            <span class="text-3xl font-light">+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-xl border border-border bg-card p-6">
+                    <h3 class="text-lg font-semibold mb-2">Team DPS</h3>
+                    <p class="text-4xl font-black text-primary">—</p>
+                    <p class="text-xs text-muted-foreground mt-1">Add characters and weapons to calculate</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

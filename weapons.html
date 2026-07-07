@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact Team Damage Calculator — Characters</title>
+    <title>Genshin Impact Team Damage Calculator — Weapons</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -18,8 +18,8 @@
                     <span class="text-xl font-black tracking-tight">GENSHIN<span class="text-primary">CALC</span></span>
                 </div>
                 <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
-                    <a href="index.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Characters</a>
-                    <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
+                    <a href="index.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
+                    <a href="weapons.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Weapons</a>
                     <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
                     <a href="teams.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
                 </nav>
@@ -28,21 +28,21 @@
 
         <main class="container py-8">
 
-            <!-- ============ CHARACTERS ============ -->
-            <section id="page-characters" class="tab-page">
+            <!-- ============ WEAPONS ============ -->
+            <section id="page-weapons" class="tab-page">
                 <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
-                    <h2 class="text-3xl font-bold">Characters</h2>
-                    <div class="flex flex-wrap gap-2" id="character-filters">
+                    <h2 class="text-3xl font-bold">Weapons</h2>
+                    <div class="flex flex-wrap gap-2" id="weapon-filters">
                         <button
                             class="filter-button active px-3 py-1.5 rounded-md border border-border text-sm">All</button>
-                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Pyro</button>
-                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Cryo</button>
-                        <button
-                            class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Electro</button>
+                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Sword</button>
                         <button
                             class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Claymore</button>
                         <button
+                            class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Polearm</button>
+                        <button
                             class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Catalyst</button>
+                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Bow</button>
                     </div>
                 </div>
 
@@ -50,11 +50,11 @@
                     <div
                         class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
                         <div
-                            class="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
                             Icon</div>
                         <div class="text-center">
-                            <p class="font-semibold text-sm">Sandrone</p>
-                            <p class="text-xs text-muted-foreground">Cryo · Claymore</p>
+                            <p class="font-semibold text-sm">Skyward Atlas</p>
+                            <p class="text-xs text-muted-foreground">Catalyst</p>
                         </div>
                         <button
                             class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
@@ -63,11 +63,11 @@
                     <div
                         class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
                         <div
-                            class="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
                             Icon</div>
                         <div class="text-center">
-                            <p class="font-semibold text-sm">Yae Miko</p>
-                            <p class="text-xs text-muted-foreground">Electro · Catalyst</p>
+                            <p class="font-semibold text-sm">Skyward Spine</p>
+                            <p class="text-xs text-muted-foreground">Polearm</p>
                         </div>
                         <button
                             class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
@@ -76,52 +76,37 @@
                     <div
                         class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
                         <div
-                            class="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
                             Icon</div>
                         <div class="text-center">
-                            <p class="font-semibold text-sm">Nicole</p>
-                            <p class="text-xs text-muted-foreground">Pyro · Catalyst</p>
+                            <p class="font-semibold text-sm">A Teaspoon of Transcendence</p>
+                            <p class="text-xs text-muted-foreground">Claymore</p>
                         </div>
                         <button
                             class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
                     </div>
 
                     <div
-                        class="quality-purple rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer opacity-70">
+                        class="quality-purple rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
                         <div
-                            class="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
                             Icon</div>
                         <div class="text-center">
-                            <p class="font-semibold text-sm">Alyosha</p>
-                            <p class="text-xs text-muted-foreground">Electro · Polearm</p>
-                            <p class="text-[10px] text-yellow-500/80 uppercase tracking-wide mt-0.5">Upcoming</p>
+                            <p class="font-semibold text-sm">Favonius Lance</p>
+                            <p class="text-xs text-muted-foreground">Polearm</p>
                         </div>
                         <button
                             class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
                     </div>
 
                     <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer opacity-70">
+                        class="quality-purple rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
                         <div
-                            class="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
                             Icon</div>
                         <div class="text-center">
-                            <p class="font-semibold text-sm">Odette</p>
-                            <p class="text-xs text-muted-foreground">Cryo · Sword</p>
-                            <p class="text-[10px] text-yellow-500/80 uppercase tracking-wide mt-0.5">Upcoming</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Escoffier</p>
-                            <p class="text-xs text-muted-foreground">Cryo · Polearm</p>
+                            <p class="font-semibold text-sm">Forgeable Weapon</p>
+                            <p class="text-xs text-muted-foreground">Sword / Catalyst</p>
                         </div>
                         <button
                             class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>

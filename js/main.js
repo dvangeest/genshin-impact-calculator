@@ -1,26 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Top-level tab switching
-  const tabButtons = document.querySelectorAll('#main-tabs .tab-button');
-  const pages = document.querySelectorAll('.tab-page');
+  // Highlight the nav link that matches the current page
+  const navLinks = document.querySelectorAll('#main-tabs .tab-button');
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabButtons.forEach(b => {
-        b.classList.remove('active');
-        b.classList.add('text-muted-foreground');
-      });
-      btn.classList.add('active');
-      btn.classList.remove('text-muted-foreground');
-
-      const target = btn.dataset.tab;
-      pages.forEach(page => {
-        if (page.id === `page-${target}`) {
-          page.classList.remove('hidden');
-        } else {
-          page.classList.add('hidden');
-        }
-      });
-    });
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage || (currentPage === 'index.html' && linkPage === 'index.html')) {
+      link.classList.add('active');
+      link.classList.remove('text-muted-foreground');
+    } else {
+      link.classList.remove('active');
+      link.classList.add('text-muted-foreground');
+    }
   });
 
   // Filter button groups (visual toggle only, no filtering logic yet)
