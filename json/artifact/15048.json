@@ -1,31 +1,44 @@
 {
     "info": {
         "pieces": {
-            "circlet": {
-                "icon": "UI_RelicIcon_15048_3",
-                "name": "0"
-            },
-            "flower": {
-                "icon": "UI_RelicIcon_15048_4",
-                "name": "0"
-            },
-            "goblet": {
-                "icon": "UI_RelicIcon_15048_1",
-                "name": "0"
-            },
-            "plume": {
-                "icon": "UI_RelicIcon_15048_2",
-                "name": "0"
-            },
-            "sands": {
-                "icon": "UI_RelicIcon_15048_5",
-                "name": "0"
-            }
+            "circlet": { "icon": "UI_RelicIcon_15048_3", "name": "0" },
+            "flower": { "icon": "UI_RelicIcon_15048_4", "name": "0" },
+            "goblet": { "icon": "UI_RelicIcon_15048_1", "name": "0" },
+            "plume": { "icon": "UI_RelicIcon_15048_2", "name": "0" },
+            "sands": { "icon": "UI_RelicIcon_15048_5", "name": "0" }
         },
         "qualityType": "QUALITY_ORANGE",
         "setBonuses": {
-            "2pc": "ATK +18%.",
-            "4pc": "When you trigger Stellar-Conduct, Stellar Swirl, or directly deal reaction DMG of the above types, your ATK increases by 12% and nearby party members gain a buff that increases their Stellar-Conduct and Stellar Swirl DMG by 50% for 12s. This effect is unique and cannot stack. Can be triggered even when the character is not on the field."
+            "2pc": {
+                "description": "ATK +18%.",
+                "stat": "ATK_PERCENT",
+                "value": 0.18,
+                "trigger": "OnEquip"
+            },
+            "4pc": {
+                "description": "When you trigger Stellar-Conduct, Stellar Swirl, or directly deal reaction DMG of the above types, your ATK increases by 12% and nearby party members gain a buff that increases their Stellar-Conduct and Stellar Swirl DMG by 50% for 12s. This effect is unique and cannot stack. Can be triggered even when the character is not on the field.",
+                "effects": [
+                    {
+                        "stat": "ATK_PERCENT",
+                        "value": 0.12,
+                        "trigger": "OnReactionTrigger",
+                        "reaction": ["StellarConduct", "StellarSwirl"],
+                        "target": "Self",
+                        "canTriggerOffField": true,
+                        "stacks": false
+                    },
+                    {
+                        "stat": "REACTION_DMG_PERCENT",
+                        "reaction": ["StellarConduct", "StellarSwirl"],
+                        "value": 0.50,
+                        "trigger": "OnReactionTrigger",
+                        "target": "NearbyPartyMembers",
+                        "duration": 12,
+                        "canTriggerOffField": true,
+                        "stacks": false
+                    }
+                ]
+            }
         },
         "setIcon": "UI_RelicIcon_15048_4",
         "setName": "???"

@@ -1,4 +1,147 @@
 {
+    "name": "Skyward Spine",
+    "weaponType": "WEAPON_POLE",
+    "qualityType": "QUALITY_ORANGE",
+    "weaponIcon": "UI_EquipIcon_Pole_Dvalin",
+    "weaponDesc": "A polearm that symbolizes Dvalin's firm resolve. The upright shaft of this weapon points towards the heavens, clad in the might of sky and wind.",
+    "mainStat": {
+        "type": "ATK_FLAT",
+        "curve": "atk"
+    },
+    "subStat": {
+        "type": "ENERGY_RECHARGE",
+        "curve": "Energy Recharge%"
+    },
+    "passive": {
+        "name": "Black Wing",
+        "refinements": [
+            {
+                "refinement": 1,
+                "modifiers": [
+                    {
+                        "stat": "CRIT_RATE",
+                        "value": 0.08,
+                        "trigger": "OnEquip"
+                    },
+                    {
+                        "stat": "NORMAL_ATK_SPEED_PERCENT",
+                        "value": 0.12,
+                        "trigger": "OnEquip"
+                    }
+                ],
+                "proc": {
+                    "trigger": "OnNormalOrChargedAttackHit",
+                    "chance": 0.50,
+                    "effect": {
+                        "stat": "ATK_MULTIPLIER_DMG",
+                        "value": 0.40,
+                        "areaOfEffect": "SmallAoE"
+                    },
+                    "cooldown": 2
+                }
+            },
+            {
+                "refinement": 2,
+                "modifiers": [
+                    {
+                        "stat": "CRIT_RATE",
+                        "value": 0.10,
+                        "trigger": "OnEquip"
+                    },
+                    {
+                        "stat": "NORMAL_ATK_SPEED_PERCENT",
+                        "value": 0.12,
+                        "trigger": "OnEquip"
+                    }
+                ],
+                "proc": {
+                    "trigger": "OnNormalOrChargedAttackHit",
+                    "chance": 0.50,
+                    "effect": {
+                        "stat": "ATK_MULTIPLIER_DMG",
+                        "value": 0.55,
+                        "areaOfEffect": "SmallAoE"
+                    },
+                    "cooldown": 2
+                }
+            },
+            {
+                "refinement": 3,
+                "modifiers": [
+                    {
+                        "stat": "CRIT_RATE",
+                        "value": 0.12,
+                        "trigger": "OnEquip"
+                    },
+                    {
+                        "stat": "NORMAL_ATK_SPEED_PERCENT",
+                        "value": 0.12,
+                        "trigger": "OnEquip"
+                    }
+                ],
+                "proc": {
+                    "trigger": "OnNormalOrChargedAttackHit",
+                    "chance": 0.50,
+                    "effect": {
+                        "stat": "ATK_MULTIPLIER_DMG",
+                        "value": 0.70,
+                        "areaOfEffect": "SmallAoE"
+                    },
+                    "cooldown": 2
+                }
+            },
+            {
+                "refinement": 4,
+                "modifiers": [
+                    {
+                        "stat": "CRIT_RATE",
+                        "value": 0.14,
+                        "trigger": "OnEquip"
+                    },
+                    {
+                        "stat": "NORMAL_ATK_SPEED_PERCENT",
+                        "value": 0.12,
+                        "trigger": "OnEquip"
+                    }
+                ],
+                "proc": {
+                    "trigger": "OnNormalOrChargedAttackHit",
+                    "chance": 0.50,
+                    "effect": {
+                        "stat": "ATK_MULTIPLIER_DMG",
+                        "value": 0.85,
+                        "areaOfEffect": "SmallAoE"
+                    },
+                    "cooldown": 2
+                }
+            },
+            {
+                "refinement": 5,
+                "modifiers": [
+                    {
+                        "stat": "CRIT_RATE",
+                        "value": 0.16,
+                        "trigger": "OnEquip"
+                    },
+                    {
+                        "stat": "NORMAL_ATK_SPEED_PERCENT",
+                        "value": 0.12,
+                        "trigger": "OnEquip"
+                    }
+                ],
+                "proc": {
+                    "trigger": "OnNormalOrChargedAttackHit",
+                    "chance": 0.50,
+                    "effect": {
+                        "stat": "ATK_MULTIPLIER_DMG",
+                        "value": 1.00,
+                        "areaOfEffect": "SmallAoE"
+                    },
+                    "cooldown": 2
+                }
+            }
+        ]
+    },
     "ascension": [
         {
             "count": 15,
@@ -45,22 +188,42 @@
             "icon": "UI_ItemIcon_202"
         }
     ],
-    "name": "Skyward Spine",
-    "passive": {
-        "name": "Black Wing",
-        "refinements": {
-            "1": "Increases CRIT Rate by 8% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 40% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
-            "2": "Increases CRIT Rate by 10% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 55% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
-            "3": "Increases CRIT Rate by 12% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 70% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
-            "4": "Increases CRIT Rate by 14% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 85% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s.",
-            "5": "Increases CRIT Rate by 16% and increases Normal ATK SPD by 12%. Additionally, Normal and Charged Attacks hits on opponents have a 50% chance to trigger a vacuum blade that deals 100% of ATK as DMG in a small AoE. This effect can occur no more than once every 2s."
-        }
-    },
-    "qualityType": "QUALITY_ORANGE",
     "stats": {
         "1": {
             "Energy Recharge%": 8.0,
             "atk": 48
+        },
+        "2": {
+            "Energy Recharge%": 8.0,
+            "atk": 52
+        },
+        "3": {
+            "Energy Recharge%": 8.0,
+            "atk": 56
+        },
+        "4": {
+            "Energy Recharge%": 8.0,
+            "atk": 61
+        },
+        "5": {
+            "Energy Recharge%": 9.3,
+            "atk": 65
+        },
+        "6": {
+            "Energy Recharge%": 9.3,
+            "atk": 69
+        },
+        "7": {
+            "Energy Recharge%": 9.3,
+            "atk": 74
+        },
+        "8": {
+            "Energy Recharge%": 9.3,
+            "atk": 78
+        },
+        "9": {
+            "Energy Recharge%": 9.3,
+            "atk": 83
         },
         "10": {
             "Energy Recharge%": 10.9,
@@ -102,10 +265,6 @@
             "Energy Recharge%": 12.5,
             "atk": 129
         },
-        "2": {
-            "Energy Recharge%": 8.0,
-            "atk": 52
-        },
         "20": {
             "Energy Recharge%": 14.1,
             "atk": 133
@@ -145,10 +304,6 @@
         "29": {
             "Energy Recharge%": 15.8,
             "atk": 207
-        },
-        "3": {
-            "Energy Recharge%": 8.0,
-            "atk": 56
         },
         "30": {
             "Energy Recharge%": 17.4,
@@ -190,10 +345,6 @@
             "Energy Recharge%": 19.0,
             "atk": 256
         },
-        "4": {
-            "Energy Recharge%": 8.0,
-            "atk": 61
-        },
         "40": {
             "Energy Recharge%": 20.6,
             "atk": 261
@@ -233,10 +384,6 @@
         "49": {
             "Energy Recharge%": 22.2,
             "atk": 336
-        },
-        "5": {
-            "Energy Recharge%": 9.3,
-            "atk": 65
         },
         "50": {
             "Energy Recharge%": 23.8,
@@ -278,10 +425,6 @@
             "Energy Recharge%": 25.4,
             "atk": 418
         },
-        "6": {
-            "Energy Recharge%": 9.3,
-            "atk": 69
-        },
         "60": {
             "Energy Recharge%": 27.1,
             "atk": 423
@@ -321,10 +464,6 @@
         "69": {
             "Energy Recharge%": 28.7,
             "atk": 501
-        },
-        "7": {
-            "Energy Recharge%": 9.3,
-            "atk": 74
         },
         "70": {
             "Energy Recharge%": 30.3,
@@ -366,10 +505,6 @@
             "Energy Recharge%": 31.9,
             "atk": 585
         },
-        "8": {
-            "Energy Recharge%": 9.3,
-            "atk": 78
-        },
         "80": {
             "Energy Recharge%": 33.5,
             "atk": 590
@@ -410,16 +545,9 @@
             "Energy Recharge%": 35.1,
             "atk": 669
         },
-        "9": {
-            "Energy Recharge%": 9.3,
-            "atk": 83
-        },
         "90": {
             "Energy Recharge%": 36.8,
             "atk": 674
         }
-    },
-    "weaponDesc": "A polearm that symbolizes Dvalin's firm resolve. The upright shaft of this weapon points towards the heavens, clad in the might of sky and wind.",
-    "weaponIcon": "UI_EquipIcon_Pole_Dvalin",
-    "weaponType": "WEAPON_POLE"
+    }
 }

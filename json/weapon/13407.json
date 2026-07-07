@@ -1,4 +1,82 @@
 {
+    "name": "Favonius Lance",
+    "weaponType": "WEAPON_POLE",
+    "qualityType": "QUALITY_PURPLE",
+    "weaponIcon": "UI_EquipIcon_Pole_Zephyrus",
+    "weaponDesc": "A polearm made in the style of the Knights of Favonius. Its shaft is straight, and its tip flows lightly like the wind.",
+    "mainStat": {
+        "type": "ATK_FLAT",
+        "curve": "atk"
+    },
+    "subStat": {
+        "type": "ENERGY_RECHARGE",
+        "curve": "Energy Recharge%"
+    },
+    "passive": {
+        "name": "Windfall",
+        "refinements": [
+            {
+                "refinement": 1,
+                "proc": {
+                    "trigger": "OnCritHit",
+                    "chance": 0.60,
+                    "effect": {
+                        "stat": "ENERGY_RESTORE",
+                        "value": 6
+                    },
+                    "cooldown": 12
+                }
+            },
+            {
+                "refinement": 2,
+                "proc": {
+                    "trigger": "OnCritHit",
+                    "chance": 0.70,
+                    "effect": {
+                        "stat": "ENERGY_RESTORE",
+                        "value": 6
+                    },
+                    "cooldown": 10.5
+                }
+            },
+            {
+                "refinement": 3,
+                "proc": {
+                    "trigger": "OnCritHit",
+                    "chance": 0.80,
+                    "effect": {
+                        "stat": "ENERGY_RESTORE",
+                        "value": 6
+                    },
+                    "cooldown": 9
+                }
+            },
+            {
+                "refinement": 4,
+                "proc": {
+                    "trigger": "OnCritHit",
+                    "chance": 0.90,
+                    "effect": {
+                        "stat": "ENERGY_RESTORE",
+                        "value": 6
+                    },
+                    "cooldown": 7.5
+                }
+            },
+            {
+                "refinement": 5,
+                "proc": {
+                    "trigger": "OnCritHit",
+                    "chance": 1.00,
+                    "effect": {
+                        "stat": "ENERGY_RESTORE",
+                        "value": 6
+                    },
+                    "cooldown": 6
+                }
+            }
+        ]
+    },
     "ascension": [
         {
             "count": 10,
@@ -45,22 +123,42 @@
             "icon": "UI_ItemIcon_202"
         }
     ],
-    "name": "Favonius Lance",
-    "passive": {
-        "name": "Windfall",
-        "refinements": {
-            "1": "CRIT Hits have a 60% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 12s.",
-            "2": "CRIT Hits have a 70% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 10.5s.",
-            "3": "CRIT Hits have a 80% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 9s.",
-            "4": "CRIT Hits have a 90% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 7.5s.",
-            "5": "CRIT Hits have a 100% chance to generate a small amount of Elemental Particles, which will regenerate 6 Energy for the character. Can only occur once every 6s."
-        }
-    },
-    "qualityType": "QUALITY_PURPLE",
     "stats": {
         "1": {
             "Energy Recharge%": 6.7,
             "atk": 44
+        },
+        "2": {
+            "Energy Recharge%": 6.7,
+            "atk": 48
+        },
+        "3": {
+            "Energy Recharge%": 6.7,
+            "atk": 51
+        },
+        "4": {
+            "Energy Recharge%": 6.7,
+            "atk": 55
+        },
+        "5": {
+            "Energy Recharge%": 7.7,
+            "atk": 59
+        },
+        "6": {
+            "Energy Recharge%": 7.7,
+            "atk": 63
+        },
+        "7": {
+            "Energy Recharge%": 7.7,
+            "atk": 67
+        },
+        "8": {
+            "Energy Recharge%": 7.7,
+            "atk": 71
+        },
+        "9": {
+            "Energy Recharge%": 7.7,
+            "atk": 75
         },
         "10": {
             "Energy Recharge%": 9.1,
@@ -102,10 +200,6 @@
             "Energy Recharge%": 10.4,
             "atk": 115
         },
-        "2": {
-            "Energy Recharge%": 6.7,
-            "atk": 48
-        },
         "20": {
             "Energy Recharge%": 11.8,
             "atk": 119
@@ -145,10 +239,6 @@
         "29": {
             "Energy Recharge%": 13.1,
             "atk": 181
-        },
-        "3": {
-            "Energy Recharge%": 6.7,
-            "atk": 51
         },
         "30": {
             "Energy Recharge%": 14.5,
@@ -190,10 +280,6 @@
             "Energy Recharge%": 15.8,
             "atk": 222
         },
-        "4": {
-            "Energy Recharge%": 6.7,
-            "atk": 55
-        },
         "40": {
             "Energy Recharge%": 17.2,
             "atk": 226
@@ -233,10 +319,6 @@
         "49": {
             "Energy Recharge%": 18.5,
             "atk": 289
-        },
-        "5": {
-            "Energy Recharge%": 7.7,
-            "atk": 59
         },
         "50": {
             "Energy Recharge%": 19.9,
@@ -278,10 +360,6 @@
             "Energy Recharge%": 21.2,
             "atk": 357
         },
-        "6": {
-            "Energy Recharge%": 7.7,
-            "atk": 63
-        },
         "60": {
             "Energy Recharge%": 22.6,
             "atk": 361
@@ -321,10 +399,6 @@
         "69": {
             "Energy Recharge%": 23.9,
             "atk": 424
-        },
-        "7": {
-            "Energy Recharge%": 7.7,
-            "atk": 67
         },
         "70": {
             "Energy Recharge%": 25.2,
@@ -366,10 +440,6 @@
             "Energy Recharge%": 26.6,
             "atk": 493
         },
-        "8": {
-            "Energy Recharge%": 7.7,
-            "atk": 71
-        },
         "80": {
             "Energy Recharge%": 27.9,
             "atk": 497
@@ -410,16 +480,9 @@
             "Energy Recharge%": 29.3,
             "atk": 561
         },
-        "9": {
-            "Energy Recharge%": 7.7,
-            "atk": 75
-        },
         "90": {
             "Energy Recharge%": 30.6,
             "atk": 565
         }
-    },
-    "weaponDesc": "A polearm made in the style of the Knights of Favonius. Its shaft is straight, and its tip flows lightly like the wind.",
-    "weaponIcon": "UI_EquipIcon_Pole_Zephyrus",
-    "weaponType": "WEAPON_POLE"
+    }
 }

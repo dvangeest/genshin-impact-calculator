@@ -1,4 +1,147 @@
 {
+    "name": "Forgeable Weapon",
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "qualityType": "QUALITY_PURPLE",
+    "weaponIcon": "UI_EquipIcon_Sword_GlintstoneSword",
+    "weaponDesc": "A longsword crafted with a gemstone blade; it is said to have been forged for the path of justice, and when unsheathed, it glimmers with an aura of blue Pyro flames.",
+    "mainStat": {
+        "type": "ATK_FLAT",
+        "curve": "atk"
+    },
+    "subStat": {
+        "type": "ELEMENTAL_MASTERY",
+        "curve": "Elemental Mastery"
+    },
+    "passive": {
+        "name": "",
+        "refinements": [
+            {
+                "refinement": 1,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ATK_PERCENT",
+                            "value": 0.16,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.16,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 2,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ATK_PERCENT",
+                            "value": 0.20,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.20,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 3,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ATK_PERCENT",
+                            "value": 0.24,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.24,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 4,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ATK_PERCENT",
+                            "value": 0.28,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.28,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 5,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ATK_PERCENT",
+                            "value": 0.32,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.32,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     "ascension": [
         {
             "count": 10,
@@ -45,22 +188,42 @@
             "icon": "UI_ItemIcon_202"
         }
     ],
-    "name": "Forgeable Weapon",
-    "passive": {
-        "name": "",
-        "refinements": {
-            "1": "Triggering an elemental reaction increases the character's ATK by 16% for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 16% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "2": "Triggering an elemental reaction increases the character's ATK by 20% for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 20% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "3": "Triggering an elemental reaction increases the character's ATK by 24% for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 24% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "4": "Triggering an elemental reaction increases the character's ATK by 28% for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 28% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "5": "Triggering an elemental reaction increases the character's ATK by 32% for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 32% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field."
-        }
-    },
-    "qualityType": "QUALITY_PURPLE",
     "stats": {
         "1": {
             "Elemental Mastery": 36,
             "atk": 42
+        },
+        "2": {
+            "Elemental Mastery": 36,
+            "atk": 46
+        },
+        "3": {
+            "Elemental Mastery": 36,
+            "atk": 49
+        },
+        "4": {
+            "Elemental Mastery": 36,
+            "atk": 53
+        },
+        "5": {
+            "Elemental Mastery": 42,
+            "atk": 56
+        },
+        "6": {
+            "Elemental Mastery": 42,
+            "atk": 60
+        },
+        "7": {
+            "Elemental Mastery": 42,
+            "atk": 63
+        },
+        "8": {
+            "Elemental Mastery": 42,
+            "atk": 67
+        },
+        "9": {
+            "Elemental Mastery": 42,
+            "atk": 70
         },
         "10": {
             "Elemental Mastery": 49,
@@ -102,10 +265,6 @@
             "Elemental Mastery": 56,
             "atk": 105
         },
-        "2": {
-            "Elemental Mastery": 36,
-            "atk": 46
-        },
         "20": {
             "Elemental Mastery": 64,
             "atk": 109
@@ -145,10 +304,6 @@
         "29": {
             "Elemental Mastery": 71,
             "atk": 166
-        },
-        "3": {
-            "Elemental Mastery": 36,
-            "atk": 49
         },
         "30": {
             "Elemental Mastery": 78,
@@ -190,10 +345,6 @@
             "Elemental Mastery": 85,
             "atk": 201
         },
-        "4": {
-            "Elemental Mastery": 36,
-            "atk": 53
-        },
         "40": {
             "Elemental Mastery": 93,
             "atk": 205
@@ -233,10 +384,6 @@
         "49": {
             "Elemental Mastery": 100,
             "atk": 262
-        },
-        "5": {
-            "Elemental Mastery": 42,
-            "atk": 56
         },
         "50": {
             "Elemental Mastery": 107,
@@ -278,10 +425,6 @@
             "Elemental Mastery": 115,
             "atk": 323
         },
-        "6": {
-            "Elemental Mastery": 42,
-            "atk": 60
-        },
         "60": {
             "Elemental Mastery": 122,
             "atk": 327
@@ -321,10 +464,6 @@
         "69": {
             "Elemental Mastery": 129,
             "atk": 384
-        },
-        "7": {
-            "Elemental Mastery": 42,
-            "atk": 63
         },
         "70": {
             "Elemental Mastery": 136,
@@ -366,10 +505,6 @@
             "Elemental Mastery": 144,
             "atk": 445
         },
-        "8": {
-            "Elemental Mastery": 42,
-            "atk": 67
-        },
         "80": {
             "Elemental Mastery": 151,
             "atk": 449
@@ -410,16 +545,9 @@
             "Elemental Mastery": 158,
             "atk": 506
         },
-        "9": {
-            "Elemental Mastery": 42,
-            "atk": 70
-        },
         "90": {
             "Elemental Mastery": 165,
             "atk": 510
         }
-    },
-    "weaponDesc": "A longsword crafted with a gemstone blade; it is said to have been forged for the path of justice, and when unsheathed, it glimmers with an aura of blue Pyro flames.",
-    "weaponIcon": "UI_EquipIcon_Sword_GlintstoneSword",
-    "weaponType": "WEAPON_SWORD_ONE_HAND"
+    }
 }

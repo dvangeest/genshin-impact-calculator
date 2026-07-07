@@ -1,4 +1,147 @@
 {
+    "name": "Forgeable Weapon",
+    "weaponType": "WEAPON_CATALYST",
+    "qualityType": "QUALITY_PURPLE",
+    "weaponIcon": "UI_EquipIcon_Catalyst_GlintstoneCatalyst",
+    "weaponDesc": "The Catalyst used to solidify sounds seems to still seal away a vow of loyalty and a forgotten heart.",
+    "mainStat": {
+        "type": "ATK_FLAT",
+        "curve": "atk"
+    },
+    "subStat": {
+        "type": "ATK_PERCENT",
+        "curve": "ATK%"
+    },
+    "passive": {
+        "name": "",
+        "refinements": [
+            {
+                "refinement": 1,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ELEMENTAL_MASTERY",
+                            "value": 60,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.16,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 2,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ELEMENTAL_MASTERY",
+                            "value": 75,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.20,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 3,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ELEMENTAL_MASTERY",
+                            "value": 90,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.24,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 4,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ELEMENTAL_MASTERY",
+                            "value": 105,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.28,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            },
+            {
+                "refinement": 5,
+                "proc": {
+                    "trigger": "OnReactionTrigger",
+                    "canTriggerOffField": true,
+                    "modifiers": [
+                        {
+                            "stat": "ELEMENTAL_MASTERY",
+                            "value": 120,
+                            "target": "Self",
+                            "duration": 12
+                        },
+                        {
+                            "stat": "REACTION_DMG_PERCENT",
+                            "reaction": [
+                                "StellarConduct",
+                                "StellarSwirl"
+                            ],
+                            "value": 0.32,
+                            "duration": 12,
+                            "conditional": "OnStellarReactionOnly"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     "ascension": [
         {
             "count": 10,
@@ -45,22 +188,42 @@
             "icon": "UI_ItemIcon_202"
         }
     ],
-    "name": "Forgeable Weapon",
-    "passive": {
-        "name": "",
-        "refinements": {
-            "1": "Triggering an elemental reaction increases the character's Elemental Mastery by 60 for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 16% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "2": "Triggering an elemental reaction increases the character's Elemental Mastery by 75 for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 20% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "3": "Triggering an elemental reaction increases the character's Elemental Mastery by 90 for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 24% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "4": "Triggering an elemental reaction increases the character's Elemental Mastery by 105 for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 28% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field.",
-            "5": "Triggering an elemental reaction increases the character's Elemental Mastery by 120 for 12s, and when a Stellar-Conduct/Stellar Swirl reaction is triggered, Stellar-Conduct/Stellar Swirl DMG is also increased by 32% for 12s. The aforementioned effects can still trigger even when the equipping character is not on the field."
-        }
-    },
-    "qualityType": "QUALITY_PURPLE",
     "stats": {
         "1": {
             "ATK%": 6.0,
             "atk": 44
+        },
+        "2": {
+            "ATK%": 6.0,
+            "atk": 48
+        },
+        "3": {
+            "ATK%": 6.0,
+            "atk": 51
+        },
+        "4": {
+            "ATK%": 6.0,
+            "atk": 55
+        },
+        "5": {
+            "ATK%": 7.0,
+            "atk": 59
+        },
+        "6": {
+            "ATK%": 7.0,
+            "atk": 63
+        },
+        "7": {
+            "ATK%": 7.0,
+            "atk": 67
+        },
+        "8": {
+            "ATK%": 7.0,
+            "atk": 71
+        },
+        "9": {
+            "ATK%": 7.0,
+            "atk": 75
         },
         "10": {
             "ATK%": 8.2,
@@ -102,10 +265,6 @@
             "ATK%": 9.4,
             "atk": 115
         },
-        "2": {
-            "ATK%": 6.0,
-            "atk": 48
-        },
         "20": {
             "ATK%": 10.6,
             "atk": 119
@@ -145,10 +304,6 @@
         "29": {
             "ATK%": 11.8,
             "atk": 181
-        },
-        "3": {
-            "ATK%": 6.0,
-            "atk": 51
         },
         "30": {
             "ATK%": 13.0,
@@ -190,10 +345,6 @@
             "ATK%": 14.2,
             "atk": 222
         },
-        "4": {
-            "ATK%": 6.0,
-            "atk": 55
-        },
         "40": {
             "ATK%": 15.4,
             "atk": 226
@@ -233,10 +384,6 @@
         "49": {
             "ATK%": 16.7,
             "atk": 289
-        },
-        "5": {
-            "ATK%": 7.0,
-            "atk": 59
         },
         "50": {
             "ATK%": 17.9,
@@ -278,10 +425,6 @@
             "ATK%": 19.1,
             "atk": 357
         },
-        "6": {
-            "ATK%": 7.0,
-            "atk": 63
-        },
         "60": {
             "ATK%": 20.3,
             "atk": 361
@@ -321,10 +464,6 @@
         "69": {
             "ATK%": 21.5,
             "atk": 424
-        },
-        "7": {
-            "ATK%": 7.0,
-            "atk": 67
         },
         "70": {
             "ATK%": 22.7,
@@ -366,10 +505,6 @@
             "ATK%": 23.9,
             "atk": 493
         },
-        "8": {
-            "ATK%": 7.0,
-            "atk": 71
-        },
         "80": {
             "ATK%": 25.1,
             "atk": 497
@@ -410,16 +545,9 @@
             "ATK%": 26.4,
             "atk": 561
         },
-        "9": {
-            "ATK%": 7.0,
-            "atk": 75
-        },
         "90": {
             "ATK%": 27.6,
             "atk": 565
         }
-    },
-    "weaponDesc": "The Catalyst used to solidify sounds seems to still seal away a vow of loyalty and a forgotten heart.",
-    "weaponIcon": "UI_EquipIcon_Catalyst_GlintstoneCatalyst",
-    "weaponType": "WEAPON_CATALYST"
+    }
 }
