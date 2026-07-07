@@ -1,153 +1,110 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Genshin Impact Team Damage Calculator — Rotation</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/my-artifacts.css">
-        <link rel="stylesheet" href="css/calculator.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Team Damage Calculator — Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my-artifacts.css">
+    <link rel="stylesheet" href="css/calculator.css">
+</head>
 
-    <body>
-        <div class="min-h-screen bg-background text-foreground">
+<body>
+    <div class="min-h-screen bg-background text-foreground">
 
-            <header class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-                <div class="container flex items-center justify-between py-4">
-                    <div class="flex items-center gap-2">
-                        <a href="index.html" class="text-xl font-black tracking-tight">GENSHIN<span
-                                class="text-primary">CALC</span></a>
-                    </div>
-                    <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
-                        <a href="characters.html"
-                            class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
-                        <a href="weapons.html"
-                            class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
-                        <a href="artifacts.html"
-                            class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
-                        <a href="teams.html"
-                            class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
-                        <a href="calculator.html"
-                            class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Calculator</a>
-                    </nav>
+        <!-- HEADER / TAB NAV -->
+        <header class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+            <div class="container flex items-center justify-between py-4">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="text-xl font-black tracking-tight">GENSHIN<span class="text-primary">CALC</span></a>
                 </div>
-            </header>
-
-            <main class="container py-8 pb-32">
-
-                <!-- ============ TEAM SELECT ============ -->
-                <section id="team-select-section">
-                    <div class="mb-6">
-                        <h2 class="text-3xl font-bold">Rotation Calculator</h2>
-                        <p class="text-sm text-muted-foreground mt-1">Pick 4 built characters to start a rotation timeline.
-                        </p>
-                    </div>
-
-                    <div id="team-select-empty"
-                        class="rounded-xl border border-dashed border-border p-12 text-center hidden">
-                        <p class="text-muted-foreground">No built characters yet.</p>
-                        <p class="text-sm text-muted-foreground/70 mt-1">Build characters on the <a href="characters.html"
-                                class="text-primary hover:underline">Characters</a> tab first.</p>
-                    </div>
-
-                    <div id="team-select-grid" class="rotation-team-grid"></div>
-
-                    <div class="mt-6 flex justify-end">
-                        <button id="start-rotation-btn" disabled
-                            class="px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-primary">
-                            Start Rotation (0/4)
-                        </button>
-                    </div>
-                </section>
-
-                <!-- ============ ROTATION BUILDER ============ -->
-                <section id="rotation-section" class="hidden">
-                    <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
-                        <div>
-                            <h2 class="text-3xl font-bold">Rotation Timeline</h2>
-                            <p class="text-sm text-muted-foreground mt-1">Click a character below to add their events.</p>
-                        </div>
-                        <button id="change-team-btn"
-                            class="px-4 py-2 rounded-md bg-secondary text-secondary-foreground text-sm font-medium hover:bg-secondary/80 transition-colors">
-                            Change Team
-                        </button>
-                    </div>
-
-                    <!-- Preset bar -->
-                    <div class="rotation-preset-bar mb-4">
-                        <select id="preset-select"
-                            class="field-select h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring"></select>
-                        <button id="load-preset-btn"
-                            class="px-3 py-2 rounded-md bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors">Load</button>
-                        <button id="delete-preset-btn"
-                            class="px-3 py-2 rounded-md bg-secondary text-secondary-foreground text-xs font-medium hover:bg-destructive hover:text-destructive-foreground transition-colors">Delete</button>
-                        <div class="flex-1"></div>
-                        <button id="save-preset-btn"
-                            class="px-3 py-2 rounded-md bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors">Save
-                            as Preset</button>
-                        <button id="clear-timeline-btn"
-                            class="px-3 py-2 rounded-md bg-secondary text-secondary-foreground text-xs font-medium hover:bg-destructive hover:text-destructive-foreground transition-colors">Clear
-                            Timeline</button>
-                    </div>
-
-                    <!-- Totals -->
-                    <div id="rotation-totals" class="rotation-totals mb-4"></div>
-
-                    <!-- Timeline -->
-                    <div class="rotation-timeline-panel">
-                        <div id="timeline-empty" class="timeline-empty">
-                            <p class="text-muted-foreground text-sm">No events yet. Click a character below to add the first
-                                one.</p>
-                        </div>
-                        <div id="timeline-track" class="timeline-track"></div>
-                    </div>
-                </section>
-
-            </main>
-
-            <!-- ============ CHARACTER DOCK ============ -->
-            <div id="character-dock-bar" class="character-dock-bar hidden">
-                <div id="character-dock" class="character-dock"></div>
+                <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
+                    <a href="characters.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
+                    <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
+                    <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
+                    <a href="teams.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
+                    <a href="calculator.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Calculator</a>
+                </nav>
             </div>
-        </div>
+        </header>
 
-        <!-- ============ EVENT MENU MODAL ============ -->
-        <div id="event-menu-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <div id="event-menu-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-            <div
-                class="modal-panel relative w-full max-w-md max-h-[85vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 id="event-menu-title" class="text-lg font-semibold">Character Events</h3>
-                    <button id="close-event-menu-btn"
-                        class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+        <main class="container py-8 space-y-6">
+
+            <div>
+                <h2 class="text-3xl font-bold">Team Damage Calculator</h2>
+                <p class="text-sm text-muted-foreground mt-1">Build a rotation timeline for up to 4 saved characters and see live DPS/DPR.</p>
+            </div>
+
+            <!-- Team slots -->
+            <section>
+                <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">Team</h3>
+                <div id="calc-team-slots" class="rotation-team-grid"></div>
+            </section>
+
+            <!-- Timeline controls -->
+            <section class="rotation-preset-bar">
+                <label class="text-xs text-muted-foreground" for="calc-duration-input">Duration (s)</label>
+                <input id="calc-duration-input" type="number" min="1" max="300" step="1" value="20"
+                    class="field-input h-9 w-20 rounded-md border border-input bg-transparent px-2 text-sm">
+                <label class="text-xs text-muted-foreground ml-4" for="calc-zoom-input">Zoom (px/s)</label>
+                <input id="calc-zoom-input" type="range" min="10" max="120" step="5" value="40" class="w-40">
+            </section>
+
+            <!-- Enemy panel -->
+            <section class="rotation-totals">
+                <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Enemy</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
+                    <div>
+                        <label class="text-[11px] text-muted-foreground">Level</label>
+                        <input id="enemy-level-input" type="number" min="1" max="100" value="90"
+                            class="field-input h-9 w-full rounded-md border border-input bg-transparent px-2 text-sm">
+                    </div>
+                    <div>
+                        <label class="text-[11px] text-muted-foreground">DEF Shred %</label>
+                        <input id="enemy-def-shred-input" type="number" step="1" value="0"
+                            class="field-input h-9 w-full rounded-md border border-input bg-transparent px-2 text-sm">
+                    </div>
+                    <div>
+                        <label class="text-[11px] text-muted-foreground">DEF Ignore %</label>
+                        <input id="enemy-def-ignore-input" type="number" step="1" value="0"
+                            class="field-input h-9 w-full rounded-md border border-input bg-transparent px-2 text-sm">
+                    </div>
                 </div>
-                <div id="event-menu-body" class="space-y-4"></div>
-            </div>
-        </div>
+                <div id="enemy-res-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+            </section>
 
-        <!-- ============ PRESET SAVE MODAL ============ -->
-        <div id="preset-save-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <div id="preset-save-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-            <div class="modal-panel relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-2xl">
-                <h3 class="text-lg font-semibold mb-4">Save Rotation Preset</h3>
-                <input id="preset-name-input" type="text" placeholder="Preset name…"
-                    class="field-input w-full h-10 rounded-md border border-input bg-transparent px-3 text-sm mb-3 focus:outline-none focus:ring-1 focus:ring-ring">
-                <p id="preset-save-error" class="hidden mb-3 text-xs text-red-400"></p>
-                <div class="flex gap-3">
-                    <button id="confirm-save-preset-btn"
-                        class="flex-1 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">Save</button>
-                    <button id="cancel-save-preset-btn"
-                        class="px-4 py-2 rounded-md bg-secondary text-secondary-foreground text-sm font-medium hover:bg-secondary/80 transition-colors">Cancel</button>
+            <!-- Timeline -->
+            <section class="rotation-timeline-panel">
+                <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Rotation Timeline</h3>
+                <div class="calc-ruler-wrap">
+                    <div id="calc-ruler" class="calc-ruler"></div>
                 </div>
-            </div>
-        </div>
+                <div id="calc-lanes" class="calc-lanes"></div>
+            </section>
 
-        <script src="js/characterData.js"></script>
-        <script src="js/weaponData.js"></script>
-        <script src="js/artifactData.js"></script>
-        <script src="js/rotationCalculator.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+            <!-- DPS / DPR charts -->
+            <section class="rotation-totals">
+                <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Team DPS / DPR Contribution</h3>
+                <div class="calc-charts-grid">
+                    <div class="calc-chart-box">
+                        <svg id="calc-pie-chart" viewBox="0 0 200 200" class="calc-pie-svg"></svg>
+                    </div>
+                    <div class="calc-chart-box">
+                        <svg id="calc-bar-chart" class="calc-bar-svg"></svg>
+                    </div>
+                </div>
+                <div id="calc-chart-legend" class="calc-chart-legend mt-4"></div>
+            </section>
 
-    </html>
+        </main>
+    </div>
+
+    <script src="js/characterData.js"></script>
+    <script src="js/weaponData.js"></script>
+    <script src="js/artifactData.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
