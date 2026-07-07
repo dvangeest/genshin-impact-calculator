@@ -1,10 +1,32 @@
 /**
- * Team Damage Calculator page logic.
+ * Team Damage / Rotation Calculator page logic.
  *
- * Reads existing saved data (My Characters / My Weapons / My Artifacts,
- * all in localStorage from the other tabs) but never mutates it. All new
- * state introduced by this page lives under its own storage keys so it
- * can't corrupt the other tabs' data.
+ * Reads existing saved data (My Characters / My Weapons / My Artifacts) but
+ * never mutates it. All new state introduced by this page lives under its
+ * own storage keys.
+ *
+ * Damage formulas implemented here follow the community-verified formulas
+ * documented on the Genshin Impact Wiki ("Damage", "Elemental Mastery", and
+ * "Elemental Reaction/Level Scaling" pages):
+ *   - Outgoing DMG   = ATK * MV * (1 + DMG Bonus%)
+ *   - Avg (w/ CRIT)  = Outgoing DMG * (1 + CRIT Rate * CRIT DMG)
+ *   - DEF multiplier = (casterLevel+100) / (casterLevel+100 + enemyDEF)
+ *   - RES multiplier = 1 - RES/2                 if RES < 0
+ *                     = 1 - RES                   if 0 <= RES < 75%
+ *                     = 1 / (1 + 4*RES)           if RES >= 75%
+ *   - Transformative reactions (Overloaded/Superconduct/Electro-Charged/
+ *     Swirl/Burning/Bloom/Shattered/Burgeon/Hyperbloom): ignore DEF, can't
+ *     CRIT, scale off the triggering character's level + EM only.
+ *     DMG = LevelTable[reaction][level] * (1 + EMBonus + ReactionDMGBonus%) * RES mult
+ *     EMBonus = 16*EM / (EM + 2000)
+ *   - Amplifying reactions (Vaporize/Melt): multiply the triggering hit's
+ *     damage by 1.5x or 2x, further boosted by EM.
+ *     Multiplier = Base(1.5 or 2) * (1 + EMBonus + ReactionDMGBonus%)
+ *     EMBonus = 2.78*EM / (EM + 1400)
+ *   - Additive reactions (Aggravate/Spread): add flat bonus damage to the
+ *     triggering hit, also EM-scaled.
+ *     Bonus = LevelTable[reaction][level] * (1 + EMBonus + ReactionDMGBonus%)
+ *     EMBonus = 5*EM / (EM + 1200)
  */
 
 const CALC_STORAGE_KEY = 'gi_calc_calculator_state';
@@ -21,6 +43,61 @@ const ELEMENT_HEX = {
     Anemo: '#5fd9b8', Geo: '#f0c14b', Dendro: '#8fce46', Physical: '#c9c9c9'
 };
 
+/* ---------- reaction level-scaling tables ----------
+ * Anchor values pulled at the same level breakpoints this codebase already
+ * uses for character stat curves (1/20/40/50/60/70/80/90), sourced from the
+ * "Base Damage For Characters" table on the Elemental Reaction/Level Scaling
+ * wiki page. Values are linearly interpolated between breakpoints, mirroring
+ * getCharacterStatsAtLevel()'s approach elsewhere in this codebase. */
+
+const LEVEL_BREAKPOINTS = [1, 20, 40, 50, 60, 70, 80, 90];
+
+const TRANSFORMATIVE_TABLE = {
+    burning: [4.29, 20.15, 51.85, 80.90, 123.22, 191.41, 269.36, 361.71],
+    swirl: [10.30, 48.35, 124.43, 194.16, 295.73, 459.38, 646.47, 868.11],
+    superconduct: [25.75, 120.88, 311.07, 485.40, 739.33, 1148.46, 1616.17, 2170.28],
+    electroCharged: [34.33, 161.17, 414.76, 647.20, 985.77, 1531.28, 2154.89, 2893.71],
+    overloaded: [47.21, 221.61, 570.30, 889.90, 1355.43, 2105.51, 2962.97, 3978.85],
+    shattered: [51.50, 241.75, 622.15, 970.80, 1478.65, 2296.92, 3232.33, 4340.56],
+    bloom: [34.33, 161.17, 414.76, 647.20, 985.77, 1531.28, 2154.89, 2893.71],
+    burgeon: [51.50, 241.75, 622.15, 970.80, 1478.65, 2296.92, 3232.33, 4340.56],
+    hyperbloom: [51.50, 241.75, 622.15, 970.80, 1478.65, 2296.92, 3232.33, 4340.56]
+};
+
+const ADDITIVE_TABLE = {
+    aggravate: [19.74, 92.67, 238.49, 372.14, 566.82, 880.49, 1239.06, 1663.88],
+    spread: [21.46, 100.73, 259.23, 404.50, 616.11, 957.05, 1346.80, 1808.57]
+};
+
+function interpolateLevelTable(table, level) {
+    const lvl = Math.min(Math.max(level, 1), 90);
+    if (lvl <= LEVEL_BREAKPOINTS[0]) return table[0];
+    if (lvl >= LEVEL_BREAKPOINTS[LEVEL_BREAKPOINTS.length - 1]) return table[table.length - 1];
+    for (let i = 0; i < LEVEL_BREAKPOINTS.length - 1; i++) {
+        const lo = LEVEL_BREAKPOINTS[i];
+        const hi = LEVEL_BREAKPOINTS[i + 1];
+        if (lvl >= lo && lvl <= hi) {
+            const t = (lvl - lo) / (hi - lo);
+            return table[i] + (table[i + 1] - table[i]) * t;
+        }
+    }
+    return table[table.length - 1];
+}
+
+/* Maps the reaction keys used by the UI/select options to the level tables above. */
+const REACTION_KEY_MAP = {
+    overloaded: { table: 'overloaded', type: 'transformative' },
+    superconduct: { table: 'superconduct', type: 'transformative' },
+    electroCharged: { table: 'electroCharged', type: 'transformative' },
+    swirl: { table: 'swirl', type: 'transformative' },
+    burning: { table: 'burning', type: 'transformative' },
+    bloom: { table: 'bloom', type: 'transformative' },
+    stellarConduct: { table: 'superconduct', type: 'transformative' }, // Stellar-Conduct uses the Superconduct-family scaling in this dataset
+    stellarSwirl: { table: 'swirl', type: 'transformative' },
+    aggravate: { table: 'aggravate', type: 'additive' },
+    spread: { table: 'spread', type: 'additive' }
+};
+
 const REACTION_OPTIONS = [
     { key: 'overloaded', label: 'Overloaded (Transformative)' },
     { key: 'superconduct', label: 'Superconduct (Transformative)' },
@@ -29,7 +106,9 @@ const REACTION_OPTIONS = [
     { key: 'burning', label: 'Burning (Transformative)' },
     { key: 'bloom', label: 'Bloom (Transformative)' },
     { key: 'stellarConduct', label: 'Stellar-Conduct (Transformative)' },
-    { key: 'stellarSwirl', label: 'Stellar Swirl (Transformative)' }
+    { key: 'stellarSwirl', label: 'Stellar Swirl (Transformative)' },
+    { key: 'aggravate', label: 'Aggravate (Additive)' },
+    { key: 'spread', label: 'Spread (Additive)' }
 ];
 const AMPLIFY_OPTIONS = [
     { key: '', label: 'No amplifying reaction' },
@@ -38,9 +117,17 @@ const AMPLIFY_OPTIONS = [
     { key: 'melt-forward', label: 'Melt (Pyro on Cryo, x2)' },
     { key: 'melt-reverse', label: 'Melt (Cryo on Pyro, x1.5)' }
 ];
+const AMPLIFY_BASE_MULT = {
+    'vaporize-forward': 2, 'vaporize-reverse': 1.5,
+    'melt-forward': 2, 'melt-reverse': 1.5
+};
 
 let state = null;
 let dragCtx = null;
+
+function getCharacterById(id) {
+    return CHARACTERS.find((c) => c.id === id);
+}
 
 /* ---------- storage helpers (read-only for the other tabs' data) ---------- */
 
@@ -62,18 +149,23 @@ function saveCharPresets(list) { localStorage.setItem(CALC_PRESET_KEY, JSON.stri
 
 function loadCalcState() {
     const saved = safeParse(CALC_STORAGE_KEY, null);
-    if (saved) return saved;
+    if (saved) {
+        // Fill in any fields older saved state might be missing.
+        if (!saved.duration) saved.duration = 20;
+        if (!saved.zoom) saved.zoom = 40;
+        return saved;
+    }
     return {
         duration: 20,
         zoom: 40, // px per second
         team: [null, null, null, null], // character entry ids
-        events: {}, // entryId -> [{id, category, key, label, mv, hits, time, amplify, reaction, isReaction, requiresConst, element}]
+        events: {}, // entryId -> [{id, category, key, label, mv, hits, time, amplify, reaction, isReaction, isAdditive, requiresConst, element}]
         enemy: { level: 90, defShredPct: 0, defIgnorePct: 0, res: { Pyro: 10, Hydro: 10, Electro: 10, Cryo: 10, Anemo: 10, Geo: 10, Dendro: 10, Physical: 10 } }
     };
 }
 function persist() { localStorage.setItem(CALC_STORAGE_KEY, JSON.stringify(state)); }
 
-/* ---------- stat aggregation (mirrors Mycharacters.js, kept local to avoid DOM coupling) ---------- */
+/* ---------- stat aggregation ---------- */
 
 function applyWeaponStatLocal(type, value, stats) {
     switch (type) {
@@ -101,10 +193,7 @@ function applyArtifactStatLocal(label, value, stats) {
 /**
  * Aggregates ATK / CRIT / EM / elemental DMG% bonus for a saved character
  * entry, folding in weapon main/substat + any of the weapon's OnEquip
- * refinement modifiers, and all 5 artifacts' main/substats. Elemental/
- * Physical DMG% main stats on the Goblet are assumed to match the
- * character's own element (this data model doesn't tag which element a
- * generic "Elemental DMG%" roll is for).
+ * refinement modifiers, and all 5 artifacts' main/substats.
  */
 function computeCalcStats(entry) {
     const character = CHARACTERS.find((c) => c.id === entry.characterId);
@@ -164,57 +253,214 @@ function computeCalcStats(entry) {
     };
 }
 
-/* ---------- event catalogue helpers ---------- */
+/* ---------- event catalogue: build + sort per character ----------
+ * Flattens each character's normalAttack / elementalSkill / elementalBurst
+ * `multipliers` object (same walk used previously in js/rotationCalculator.js)
+ * into individual selectable events, then appends constellation-based
+ * "other" events. Categories are always presented in this fixed order:
+ * Normal/Charged/Plunge -> Skill -> Burst -> Passives/Constellations/Other. */
+
+function collectMultiplierEntries(multipliers, sourceTalent) {
+    const out = [];
+    function walk(obj, path, hits) {
+        Object.entries(obj || {}).forEach(([key, value]) => {
+            if (Array.isArray(value) && typeof value[0] === 'number') {
+                out.push({ key: path.concat(key).join('.'), values: value, hits: hits || 1, sourceTalent });
+            } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+                const nestedHits = typeof value.hits === 'number' ? value.hits : (hits || 1);
+                walk(value, path.concat(key), nestedHits);
+            }
+        });
+    }
+    walk(multipliers || {}, [], 1);
+    return out;
+}
+
+function humanizeMultiplierKey(key) {
+    return key.split('.').map((part) => part
+        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+        .replace(/^./, (s) => s.toUpperCase())
+    ).join(' \u2192 ');
+}
+
+function subCategoryForNormalKey(key) {
+    const lower = key.toLowerCase();
+    if (lower.includes('charged')) return 'Charged Attack';
+    if (lower.includes('plunge')) return 'Plunging Attack';
+    return 'Normal Attack';
+}
+
+/**
+ * Builds the full sorted event catalogue for a character: an array of
+ * groups in display order, each with a category id, a label, and its items.
+ */
+function getSortedCharacterEvents(characterId) {
+    const character = CHARACTERS.find((c) => c.id === characterId);
+    if (!character) return [];
+
+    const groups = [];
+
+    const normalMults = collectMultiplierEntries(character.talents.normalAttack && character.talents.normalAttack.multipliers, 'normalAttack');
+    if (normalMults.length) {
+        groups.push({
+            category: 'normal',
+            label: 'Normal / Charged / Plunging Attack',
+            items: normalMults.map((m) => ({
+                key: m.key, label: `${subCategoryForNormalKey(m.key)}: ${humanizeMultiplierKey(m.key)}`,
+                mv: m.values, hits: m.hits, sourceTalent: 'normalAttack'
+            }))
+        });
+    } else {
+        // No per-level multiplier data available for this character's basic attacks;
+        // still expose it as an activation-only event so it can be placed on the timeline.
+        groups.push({
+            category: 'normal',
+            label: 'Normal / Charged / Plunging Attack',
+            items: [{ key: 'basicAttack', label: `${character.talents.normalAttack.name} (Activation)`, mv: null, hits: 1, sourceTalent: 'normalAttack' }]
+        });
+    }
+
+    const skillMults = collectMultiplierEntries(character.talents.elementalSkill.multipliers, 'elementalSkill');
+    groups.push({
+        category: 'skill',
+        label: `Elemental Skill \u2014 ${character.talents.elementalSkill.name}`,
+        items: skillMults.length
+            ? skillMults.map((m) => ({ key: m.key, label: humanizeMultiplierKey(m.key), mv: m.values, hits: m.hits, sourceTalent: 'elementalSkill' }))
+            : [{ key: 'skillActivation', label: `${character.talents.elementalSkill.name} (Activation)`, mv: null, hits: 1, sourceTalent: 'elementalSkill' }]
+    });
+
+    const burstMults = collectMultiplierEntries(character.talents.elementalBurst.multipliers, 'elementalBurst');
+    groups.push({
+        category: 'burst',
+        label: `Elemental Burst \u2014 ${character.talents.elementalBurst.name}`,
+        items: burstMults.length
+            ? burstMults.map((m) => ({ key: m.key, label: humanizeMultiplierKey(m.key), mv: m.values, hits: m.hits, sourceTalent: 'elementalBurst' }))
+            : [{ key: 'burstActivation', label: `${character.talents.elementalBurst.name} (Activation)`, mv: null, hits: 1, sourceTalent: 'elementalBurst' }]
+    });
+
+    const otherItems = (character.constellations || [])
+        .filter((c) => c.trigger || (c.effect && (c.effect.stat || c.effect.value)))
+        .map((c) => ({
+            key: `const${c.id}`, label: `C${c.id}: ${c.name}`, mv: null, hits: 1,
+            sourceTalent: null, requiresConst: c.id
+        }));
+    if (otherItems.length) {
+        groups.push({ category: 'other', label: 'Passives / Constellations / Other', items: otherItems });
+    }
+
+    return groups;
+}
+
+const CHARACTER_TALENT_EVENT_CACHE = {};
+function getCharacterTalentEvents(characterId) {
+    if (!CHARACTER_TALENT_EVENT_CACHE[characterId]) {
+        CHARACTER_TALENT_EVENT_CACHE[characterId] = getSortedCharacterEvents(characterId);
+    }
+    return CHARACTER_TALENT_EVENT_CACHE[characterId];
+}
+
+function findEventDef(characterId, category, key) {
+    const groups = getCharacterTalentEvents(characterId);
+    const group = groups.find((g) => g.category === category);
+    if (!group) return null;
+    return group.items.find((it) => it.key === key) || null;
+}
 
 function availableEventsForEntry(entry) {
-    const groups = getSortedCharacterEvents(entry.characterId);
+    const groups = getCharacterTalentEvents(entry.characterId);
     return groups.map((g) => ({
         ...g,
         items: g.items.filter((it) => !it.requiresConst || entry.constellation >= it.requiresConst)
     })).filter((g) => g.items.length > 0);
 }
 
-function findEventDef(characterId, category, key) {
-    const data = CHARACTER_TALENT_EVENTS[characterId];
-    if (!data || !data[category]) return null;
-    return data[category].find((e) => e.key === key) || null;
+/* ---------- damage formulas ---------- */
+
+function critExpectedMultiplier(critRatePct, critDmgPct) {
+    const cr = Math.min(Math.max(critRatePct, 0), 100) / 100;
+    return 1 + cr * (critDmgPct / 100);
 }
 
-/* ---------- damage computation ---------- */
+function defenseMultiplier(casterLevel, enemyLevel, defShredPct, defIgnorePct) {
+    const enemyDef = (enemyLevel + 100) * (1 - defShredPct / 100) * (1 - defIgnorePct / 100);
+    return (casterLevel + 100) / ((casterLevel + 100) + Math.max(enemyDef, 0));
+}
 
-const CATEGORY_TO_TALENT_KEY = {
-    normal: 'normalAttack', charged: 'normalAttack', plunge: 'normalAttack',
-    skill: 'elementalSkill', burst: 'elementalBurst',
-    passive: null, constellation: null
-};
+function resistanceMultiplier(resPct) {
+    const res = resPct / 100;
+    if (res < 0) return 1 - res / 2;
+    if (res < 0.75) return 1 - res;
+    return 1 / (1 + 4 * res);
+}
 
+function transformativeEMBonus(em) { return 16 * em / (em + 2000); }
+function amplifyEMBonus(em) { return 2.78 * em / (em + 1400); }
+function additiveEMBonus(em) { return 5 * em / (em + 1200); }
+
+function computeReactionDamage(reactionKey, level, em, reactionBonusPct, resPct) {
+    const map = REACTION_KEY_MAP[reactionKey];
+    if (!map) return 0;
+    const base = interpolateLevelTable(
+        map.type === 'transformative' ? TRANSFORMATIVE_TABLE[map.table] : ADDITIVE_TABLE[map.table],
+        level
+    );
+    const emBonus = map.type === 'transformative' ? transformativeEMBonus(em) : additiveEMBonus(em);
+    const dmg = base * (1 + emBonus + (reactionBonusPct || 0) / 100);
+    // Transformative reactions ignore DEF but are reduced by RES; additive
+    // reaction bonus damage is folded into a normal hit, which is itself
+    // subject to RES via the standard incoming-damage formula.
+    return dmg * resistanceMultiplier(resPct);
+}
+
+/**
+ * Computes damage for one timeline event, given the owning character entry,
+ * the event definition, the character's aggregated stats, and the shared
+ * enemy state. Motion Value (`mv`) is returned alongside `dmg` so the UI can
+ * show both, and both update live with buffs/enemy/EM/level changes.
+ */
 function computeEventDamage(entry, ev, calcStats, character) {
     const enemy = state.enemy;
+
     if (ev.isReaction) {
-        const el = ev.reaction === 'swirl' ? (ev.swirlElement || 'Anemo') : TRANSFORMATIVE_REACTION_ELEMENT[ev.reaction];
+        const el = ev.reaction === 'swirl' || ev.reaction === 'stellarSwirl'
+            ? (ev.swirlElement || 'Anemo')
+            : (TRANSFORMATIVE_REACTION_ELEMENT[ev.reaction] || 'Anemo');
         const resPct = enemy.res[el] ?? 10;
-        const dmg = computeTransformativeDamage(ev.reaction, entry.level, calcStats.em, 0, resPct);
+        const dmg = computeReactionDamage(ev.reaction, entry.level, calcStats.em, ev.reactionBonusPct || 0, resPct);
         return { mv: null, hits: 1, dmg, perHit: dmg };
     }
+
     const def = findEventDef(entry.characterId, ev.category, ev.key);
-    if (!def) return { mv: 0, hits: 1, dmg: 0, perHit: 0 };
-    let mv;
-    if (def.mv) {
-        const talentKey = CATEGORY_TO_TALENT_KEY[ev.category];
-        const talentLevel = (talentKey && entry.talentLevels && entry.talentLevels[talentKey]) || 10;
-        mv = def.mv[Math.min(Math.max(talentLevel - 1, 0), def.mv.length - 1)];
-    } else {
-        mv = def.fixed || 0;
-    }
+    if (!def || !def.mv) return { mv: null, hits: 1, dmg: 0, perHit: 0 };
+
+    const talentKey = def.sourceTalent;
+    const talentLevel = (talentKey && entry.talentLevels && entry.talentLevels[talentKey]) || 1;
+    const mv = def.mv[Math.min(Math.max(talentLevel - 1, 0), def.mv.length - 1)];
     const hits = def.hits || 1;
-    const perHitBase = computeHitDamage(mv, {
-        atk: calcStats.atk, critRate: calcStats.critRate, critDmg: calcStats.critDmg,
-        elementalDmgBonusPct: calcStats.elementalDmgBonusPct
-    }, enemy, entry.level);
-    let perHit = perHitBase;
-    if (ev.amplify) perHit = applyAmplifyingReaction(perHitBase, ev.amplify, calcStats.em, 0);
+
+    const critMult = critExpectedMultiplier(calcStats.critRate, calcStats.critDmg);
+    const defMult = defenseMultiplier(entry.level, enemy.level, enemy.defShredPct, enemy.defIgnorePct);
+
+    const dmgBonusMult = 1 + (calcStats.elementalDmgBonusPct || 0) / 100;
+    let perHitBase = calcStats.atk * mv * dmgBonusMult;
+
+    // Amplifying reaction (Vaporize/Melt): multiplies this hit's base damage.
+    if (ev.amplify && AMPLIFY_BASE_MULT[ev.amplify]) {
+        const amp = AMPLIFY_BASE_MULT[ev.amplify] * (1 + amplifyEMBonus(calcStats.em) + (ev.reactionBonusPct || 0) / 100);
+        perHitBase *= amp;
+    }
+
+    const el = character.element || 'Physical';
+    const resPct = enemy.res[el] ?? 10;
+    const perHit = perHitBase * critMult * defMult * resistanceMultiplier(resPct);
+
     return { mv, hits, dmg: perHit * hits, perHit };
 }
+
+const TRANSFORMATIVE_REACTION_ELEMENT = {
+    overloaded: 'Pyro', superconduct: 'Cryo', electroCharged: 'Electro',
+    burning: 'Pyro', bloom: 'Dendro', stellarConduct: 'Cryo'
+};
 
 /* ---------- rendering ---------- */
 
@@ -226,11 +472,17 @@ function characterEntryOptions(excludeUsed) {
     });
 }
 
+function characterIconHtml(character, sizeClass) {
+    const initial = character ? character.name.slice(0, 1) : '?';
+    const elClass = character ? (ELEMENT_CLASS[character.element] || 'bg-secondary') : 'bg-secondary';
+    return `<div class="calc-char-icon ${sizeClass || ''} ${elClass}">${initial}</div>`;
+}
+
 function renderTeamSlots() {
     const container = document.getElementById('calc-team-slots');
     const entries = loadMyCharacterEntries();
     if (entries.length === 0) {
-        container.innerHTML = '<p class="text-sm text-muted-foreground">No saved characters yet — build some on the <a href="characters.html" class="text-primary hover:underline">Characters</a> tab first.</p>';
+        container.innerHTML = '<p class="text-sm text-muted-foreground">No saved characters yet \u2014 build some on the <a href="characters.html" class="text-primary hover:underline">Characters</a> tab first.</p>';
         return;
     }
     container.innerHTML = state.team.map((entryId, slotIndex) => {
@@ -288,12 +540,17 @@ function eventOptionsHtml(entry) {
         });
         html += '</optgroup>';
     });
-    html += '<optgroup label="Reactions (no ATK/MV — scales with EM &amp; Lv.)">';
+    html += '<optgroup label="Reactions (no ATK/MV \u2014 scales with EM & Lv.)">';
     REACTION_OPTIONS.forEach((r) => { html += `<option value="reaction::${r.key}">${r.label}</option>`; });
     html += '</optgroup>';
     return html;
 }
 
+/**
+ * Lays out events into overlapping-safe rows: an event only shares a row
+ * with events that don't overlap it in time, so simultaneous / overlapping
+ * events on the same character stack visually instead of colliding.
+ */
 function computeRowLayout(events, blockSeconds) {
     const sorted = [...events].sort((a, b) => a.time - b.time);
     const rowEnds = [];
@@ -312,7 +569,6 @@ function renderTimeline() {
     const duration = state.duration;
     const widthPx = duration * zoom;
 
-    // Shared ruler
     const ruler = document.getElementById('calc-ruler');
     ruler.style.width = `${widthPx}px`;
     let rulerHtml = '';
@@ -341,7 +597,7 @@ function renderTimeline() {
             const { mv, hits, dmg } = computeEventDamage(entry, ev, calcStats, character);
             const left = ev.time * zoom;
             const top = rows[ev.id] * 34;
-            const mvLabel = mv === null ? 'Reaction' : `MV ${(mv * 100).toFixed(1)}%${hits > 1 ? ` ×${hits}` : ''}`;
+            const mvLabel = mv === null ? (ev.isReaction ? 'EM-scaled' : '\u2014') : `MV ${(mv * 100).toFixed(1)}%${hits > 1 ? ` \u00d7${hits}` : ''}`;
             return `
         <div class="calc-event-block" style="left:${left}px; top:${top}px;" data-entry="${entry.id}" data-event="${ev.id}" title="${ev.label}">
           <span class="calc-event-label">${ev.label}</span>
@@ -354,10 +610,10 @@ function renderTimeline() {
         return `
       <div class="calc-lane-wrap">
         <div class="calc-lane-header">
-          <div class="calc-char-icon ${ELEMENT_CLASS[character.element] || ''}">${character.name.slice(0, 1)}</div>
+          ${characterIconHtml(character, '')}
           <div class="min-w-0">
             <p class="text-sm font-semibold truncate">${character.name}</p>
-            <p class="text-[11px] text-muted-foreground">${character.element} · Lv.${entry.level} · C${entry.constellation} · ATK ${Math.round(calcStats.atk)} · EM ${Math.round(calcStats.em)}</p>
+            <p class="text-[11px] text-muted-foreground">${character.element} \u00b7 Lv.${entry.level} \u00b7 C${entry.constellation} \u00b7 ATK ${Math.round(calcStats.atk)} \u00b7 EM ${Math.round(calcStats.em)}</p>
           </div>
           <div class="calc-lane-controls">
             <select class="field-select h-8 rounded-md border border-input bg-transparent px-2 text-xs calc-add-event-select" data-entry="${entry.id}">
@@ -367,7 +623,7 @@ function renderTimeline() {
             <button class="calc-btn-small calc-add-event-btn" data-entry="${entry.id}">Add</button>
             <button class="calc-btn-small calc-save-preset-btn" data-entry="${entry.id}">Save Preset</button>
             <select class="field-select h-8 rounded-md border border-input bg-transparent px-2 text-xs calc-load-preset-select" data-entry="${entry.id}">
-              <option value="">Load preset…</option>
+              <option value="">Load preset\u2026</option>
               ${presets.map((p) => `<option value="${p.id}">${p.name}</option>`).join('')}
             </select>
           </div>
@@ -378,7 +634,6 @@ function renderTimeline() {
       </div>`;
     }).join('');
 
-    // wire up controls
     lanesContainer.querySelectorAll('.calc-add-event-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
             const entryId = btn.dataset.entry;
@@ -415,6 +670,8 @@ function addEventToCharacter(entryId, optionValue, time) {
     const [category, key] = optionValue.split('::');
     const entry = loadMyCharacterEntries().find((e) => e.id === entryId);
     if (!entry) return;
+    // Events are allowed to overlap/coincide in time; only clamp to the
+    // visible timeline duration.
     const clampedTime = Math.min(Math.max(time, 0), state.duration);
 
     if (!state.events[entryId]) state.events[entryId] = [];
@@ -422,11 +679,11 @@ function addEventToCharacter(entryId, optionValue, time) {
 
     if (category === 'reaction') {
         const opt = REACTION_OPTIONS.find((r) => r.key === key);
-        state.events[entryId].push({ id, isReaction: true, reaction: key, label: opt.label, time: clampedTime, amplify: '' });
+        state.events[entryId].push({ id, isReaction: true, reaction: key, label: opt.label, time: clampedTime, amplify: '', reactionBonusPct: 0 });
     } else {
         const def = findEventDef(entry.characterId, category, key);
         if (!def) return;
-        state.events[entryId].push({ id, category, key, label: def.label, time: clampedTime, amplify: '' });
+        state.events[entryId].push({ id, category, key, label: def.label, time: clampedTime, amplify: '', reactionBonusPct: 0 });
     }
     persist();
     renderTimeline();
@@ -441,7 +698,7 @@ function removeEvent(entryId, eventId) {
     renderCharts();
 }
 
-/* ---------- drag-to-reposition on the zoomable timeline ---------- */
+/* ---------- drag-to-reposition on the zoomable timeline (allows overlap) ---------- */
 
 function startDrag(e, blockEl) {
     e.preventDefault();
@@ -458,7 +715,7 @@ function startDrag(e, blockEl) {
         const newTime = Math.min(state.duration, newLeftPx / state.zoom);
         const list = state.events[dragCtx.entryId] || [];
         const ev2 = list.find((x) => x.id === dragCtx.eventId);
-        if (ev2) ev2.time = Math.round(newTime * 10) / 10;
+        if (ev2) ev2.time = Math.round(newTime * 10) / 10; // overlap is fine, no collision check
         renderTimeline();
     }
     function onUp() {
@@ -472,7 +729,7 @@ function startDrag(e, blockEl) {
     document.addEventListener('mouseup', onUp);
 }
 
-/* ---------- per-character presets ---------- */
+/* ---------- per-character presets (independent of any team preset) ---------- */
 
 function savePresetForCharacter(entryId) {
     const entry = loadMyCharacterEntries().find((e) => e.id === entryId);
@@ -503,7 +760,7 @@ function loadPresetForCharacter(entryId, presetId) {
     renderCharts();
 }
 
-/* ---------- DPS / DPR charts ---------- */
+/* ---------- DPS / DPR totals + charts ---------- */
 
 function computeTeamTotals() {
     const activeEntries = state.team.filter(Boolean).map((id) => loadMyCharacterEntries().find((e) => e.id === id)).filter(Boolean);
@@ -532,7 +789,7 @@ function renderCharts() {
         return;
     }
 
-    // Pie (SVG donut)
+    // Pie (SVG donut), color-coded per character's element.
     const cx = 100, cy = 100, r = 90, innerR = 50;
     let angle = -90;
     let pieHtml = '';
@@ -551,7 +808,7 @@ function renderCharts() {
     pieHtml += `<circle cx="${cx}" cy="${cy}" r="${innerR}" fill="hsl(var(--card))"></circle>`;
     pieEl.innerHTML = pieHtml;
 
-    // Bar chart
+    // Bar chart, same element color coding.
     const maxDps = Math.max(...totals.map((t) => t.dps), 1);
     const barW = 620, barGap = 14, barH = 26, chartTop = 10;
     let barHtml = '';
@@ -569,10 +826,10 @@ function renderCharts() {
     barEl.setAttribute('viewBox', `0 0 ${barW} ${chartTop + totals.length * (barH + barGap)}`);
     barEl.innerHTML = barHtml;
 
-    // Legend / table
+    // Legend / table: icon + name + %, DPS, DPR.
     legendEl.innerHTML = totals.map((t) => `
     <div class="calc-legend-row">
-      <div class="calc-char-icon calc-char-icon-sm ${ELEMENT_CLASS[t.character.element] || ''}">${t.character.name.slice(0, 1)}</div>
+      ${characterIconHtml(t.character, 'calc-char-icon-sm')}
       <span class="calc-legend-name">${t.character.name}</span>
       <span class="calc-legend-stat">${t.pct.toFixed(1)}%</span>
       <span class="calc-legend-stat">DPS ${Math.round(t.dps).toLocaleString()}</span>
