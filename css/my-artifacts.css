@@ -1,0 +1,64 @@
+/* Companion styles for my-artifacts.html.
+   css/style.css is a precompiled utility sheet with a fixed class set, so
+   layout combinations that weren't already generated there (like this
+   dropdown + number-field substat row) live here instead. */
+
+.substat-row {
+    display: grid;
+    grid-template-columns: 1fr 92px;
+    gap: 0.5rem;
+}
+
+.field-select,
+.field-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.field-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    background-size: 0.9rem;
+    padding-right: 2rem;
+}
+
+.field-select option {
+    background-color: #15151a;
+    color: #f2f2f2;
+}
+
+#artifact-modal {
+    animation: modal-fade-in 0.15s ease-out;
+}
+
+#artifact-modal .modal-panel {
+    animation: modal-rise-in 0.18s ease-out;
+}
+
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.artifact-set-orange {
+    box-shadow: inset 3px 0 0 0 hsl(35 100% 55%);
+}

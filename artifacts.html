@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact Team Damage Calculator — Artifacts</title>
+    <title>Genshin Impact Team Damage Calculator — My Artifacts</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my-artifacts.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
                 <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
                     <a href="index.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
                     <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
-                    <a href="artifacts.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Artifacts</a>
+                    <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
                     <a href="teams.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
                 </nav>
             </div>
@@ -28,79 +29,100 @@
 
         <main class="container py-8">
 
-            <!-- ============ ARTIFACTS ============ -->
-            <section id="page-artifacts" class="tab-page">
+            <!-- ============ MY ARTIFACTS ============ -->
+            <section id="page-my-artifacts" class="tab-page">
                 <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
-                    <h2 class="text-3xl font-bold">Artifacts</h2>
-                    <div class="flex flex-wrap gap-2" id="artifact-filters">
-                        <button
-                            class="filter-button active px-3 py-1.5 rounded-md border border-border text-sm">All</button>
-                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">4-Piece
-                            Sets</button>
-                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">2-Piece
-                            Only</button>
+                    <div>
+                        <h2 class="text-3xl font-bold">My Artifacts</h2>
+                        <p class="text-sm text-muted-foreground mt-1">Artifacts you've rolled, saved to this browser.</p>
                     </div>
+                    <button id="open-create-modal-btn"
+                        class="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+                        + Create Artifact
+                    </button>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Golden Troupe</p>
-                            <p class="text-xs text-muted-foreground line-clamp-2">Skill DMG +20%</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Noblesse Oblige</p>
-                            <p class="text-xs text-muted-foreground line-clamp-2">Burst DMG +20%</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Disenchantment in Deep Shadow</p>
-                            <p class="text-xs text-muted-foreground line-clamp-2">ATK +18%</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer opacity-70">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            ?</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">???</p>
-                            <p class="text-xs text-muted-foreground line-clamp-2">ATK +18%</p>
-                            <p class="text-[10px] text-yellow-500/80 uppercase tracking-wide mt-0.5">Unreleased</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
+                <!-- Empty state -->
+                <div id="empty-state" class="rounded-xl border border-dashed border-border p-12 text-center hidden">
+                    <p class="text-muted-foreground">No artifacts yet.</p>
+                    <p class="text-sm text-muted-foreground/70 mt-1">Create your first one to start building loadouts.</p>
                 </div>
+
+                <!-- Artifact grid (rendered by js/myArtifacts.js) -->
+                <div id="artifact-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
             </section>
 
         </main>
     </div>
 
+    <!-- ============ CREATE ARTIFACT MODAL ============ -->
+    <div id="artifact-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div id="modal-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <div class="modal-panel relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold">Create Artifact</h3>
+                <button id="close-modal-btn" class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+
+            <div id="form-error" class="hidden mb-4 rounded-md border border-destructive/50 bg-red-500/10 px-3 py-2 text-xs text-red-400"></div>
+
+            <div class="space-y-4">
+
+                <!-- Artifact Set -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5" for="field-artifact-set">Artifact Set</label>
+                    <select id="field-artifact-set" class="field-select w-full h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring"></select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Artifact Level -->
+                    <div>
+                        <label class="block text-xs font-medium text-muted-foreground mb-1.5" for="field-level">Artifact Level</label>
+                        <input id="field-level" type="number" min="0" max="20" value="20"
+                            class="field-input w-full h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring">
+                    </div>
+
+                    <!-- Artifact Type -->
+                    <div>
+                        <label class="block text-xs font-medium text-muted-foreground mb-1.5" for="field-artifact-type">Artifact Type</label>
+                        <select id="field-artifact-type" class="field-select w-full h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring"></select>
+                    </div>
+                </div>
+
+                <!-- Main Stat -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Main Stat</label>
+                    <div class="substat-row">
+                        <select id="field-main-stat" class="field-select h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring"></select>
+                        <input id="field-main-stat-value" type="number" step="0.1" placeholder="Value"
+                            class="field-input h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring">
+                    </div>
+                </div>
+
+                <!-- Substats -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Substats</label>
+                    <div id="substat-rows" class="space-y-2"></div>
+                </div>
+
+            </div>
+
+            <div class="flex items-center gap-3 mt-6">
+                <button id="add-artifact-btn"
+                    class="flex-1 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+                    Add Artifact
+                </button>
+                <button id="clear-artifact-btn"
+                    class="px-4 py-2.5 rounded-md bg-secondary text-secondary-foreground text-sm font-medium hover:bg-secondary/80 transition-colors">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/artifactData.js"></script>
+    <script src="js/myArtifacts.js"></script>
     <script src="js/main.js"></script>
 </body>
 
