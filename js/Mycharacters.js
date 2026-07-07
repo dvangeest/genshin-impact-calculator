@@ -2,6 +2,7 @@ const CHARACTER_STORAGE_KEY = 'gi_calc_my_characters';
 const WEAPON_STORAGE_KEY_REF = 'gi_calc_my_weapons';
 const ARTIFACT_STORAGE_KEY_REF = 'gi_calc_my_artifacts';
 
+let editingEntryId = null; // null = creating new, set = editing existing entry
 let selectedCharacterId = null;
 let currentDraft = null; // { weaponEntryId, artifacts: { flower, plume, sands, goblet, circlet } }
 let currentArtifactSlot = null;
@@ -333,6 +334,7 @@ function renderArtifactSlotButtons() {
 
 function openCharacterCreateModal(characterId) {
     selectedCharacterId = characterId;
+    editingEntryId = null; // ← added
     currentDraft = { weaponEntryId: null, artifacts: { flower: null, plume: null, sands: null, goblet: null, circlet: null } };
 
     const character = getCharacterById(characterId);
@@ -346,6 +348,37 @@ function openCharacterCreateModal(characterId) {
     updateSelectedWeaponLabel();
     renderArtifactSlotButtons();
     updateCharacterPreview();
+    document.getElementById('create-character-btn').textContent = 'Create'; // ← added
+
+    document.getElementById('character-create-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function openCharacterEditModal(entryId) {
+    const entry = loadMyCharacters().find((c) => c.id === entryId);
+    if (!entry) return;
+
+    const character = getCharacterById(entry.characterId);
+    if (!character) return;
+
+    selectedCharacterId = entry.characterId;
+    editingEntryId = entry.id;
+    currentDraft = {
+        weaponEntryId: entry.weaponEntryId || null,
+        artifacts: { flower: null, plume: null, sands: null, goblet: null, circlet: null, ...entry.artifacts }
+    };
+
+    document.getElementById('character-create-title').textContent =
+        `Edit ${character.name} (${character.element} · ${WEAPON_TYPE_LABELS[character.weaponType] || character.weaponType})`;
+    document.getElementById('character-create-error').classList.add('hidden');
+    document.getElementById('character-level-input').value = entry.level;
+    document.getElementById('character-constellation-input').value = entry.constellation;
+
+    renderTalentFields(character, entry.constellation, entry.talentLevels);
+    updateSelectedWeaponLabel();
+    renderArtifactSlotButtons();
+    updateCharacterPreview();
+    document.getElementById('create-character-btn').textContent = 'Save Changes';
 
     document.getElementById('character-create-modal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -356,6 +389,7 @@ function closeCharacterCreateModal() {
     document.body.style.overflow = '';
     selectedCharacterId = null;
     currentDraft = null;
+    editingEntryId = null; // ← added
 }
 
 function handleCreateCharacter() {
@@ -371,28 +405,43 @@ function handleCreateCharacter() {
     const level = parseInt(document.getElementById('character-level-input').value, 10);
     const constellation = getConstellationValue();
 
-    // in handleCreateCharacter():
     if (!Number.isFinite(level) || level < 1 || level > 100) {
         errorEl.textContent = 'Level must be between 1 and 100.';
         errorEl.classList.remove('hidden');
         return;
     }
 
-    const entry = {
-        id: `char_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-        characterId: character.id,
-        level,
-        constellation,
-        talentLevels: readTalentLevelsFromForm(),
-        weaponEntryId: currentDraft.weaponEntryId,
-        artifacts: { ...currentDraft.artifacts },
-        createdAt: Date.now()
-    };
-
     const characters = loadMyCharacters();
-    characters.unshift(entry);
-    saveMyCharacters(characters);
 
+    if (editingEntryId) {
+        const idx = characters.findIndex((c) => c.id === editingEntryId);
+        if (idx === -1) {
+            errorEl.textContent = 'Could not find the character entry to update.';
+            errorEl.classList.remove('hidden');
+            return;
+        }
+        characters[idx] = {
+            ...characters[idx],
+            level,
+            constellation,
+            talentLevels: readTalentLevelsFromForm(),
+            weaponEntryId: currentDraft.weaponEntryId,
+            artifacts: { ...currentDraft.artifacts }
+        };
+    } else {
+        characters.unshift({
+            id: `char_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+            characterId: character.id,
+            level,
+            constellation,
+            talentLevels: readTalentLevelsFromForm(),
+            weaponEntryId: currentDraft.weaponEntryId,
+            artifacts: { ...currentDraft.artifacts },
+            createdAt: Date.now()
+        });
+    }
+
+    saveMyCharacters(characters);
     closeCharacterCreateModal();
     renderMyCharacters();
 }
@@ -541,15 +590,25 @@ function renderMyCharacters() {
         </div>
         <p class="text-xs text-muted-foreground truncate">${weaponData ? weaponData.name : 'No weapon equipped'}</p>
         <p class="text-xs text-muted-foreground/80">Talents: ${talentSummary}</p>
-        <button
-          class="mt-auto w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-destructive hover:text-destructive-foreground transition-colors delete-character-btn"
-          data-id="${entry.id}">
-          Remove
-        </button>
+        <div class="mt-auto flex gap-2">
+          <button
+            class="flex-1 py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors edit-character-btn"
+            data-id="${entry.id}">
+            Edit
+          </button>
+          <button
+            class="flex-1 py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-destructive hover:text-destructive-foreground transition-colors delete-character-btn"
+            data-id="${entry.id}">
+            Remove
+          </button>
+        </div>
       </div>
     `;
     }).join('');
 
+    grid.querySelectorAll('.edit-character-btn').forEach((btn) => {
+        btn.addEventListener('click', () => openCharacterEditModal(btn.dataset.id));
+    });
     grid.querySelectorAll('.delete-character-btn').forEach((btn) => {
         btn.addEventListener('click', () => handleDeleteCharacter(btn.dataset.id));
     });
