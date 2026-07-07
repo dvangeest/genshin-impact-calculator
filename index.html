@@ -9,69 +9,7 @@
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Genshin Impact Team Damage Calculator</h1>
-            <p>Calculate team damage output with advanced character stats</p>
-        </header>
-
-        <main>
-            <!-- Character Selection -->
-            <section class="character-section">
-                <h2>Select Characters</h2>
-                <div class="team-builder">
-                    <div id="teamSlots" class="team-slots">
-                        <!-- Character slots will be generated here -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Character Database Preview -->
-            <section class="database-section">
-                <h2>Character Database</h2>
-                <div class="filter-controls">
-                    <select id="elementFilter" aria-label="Filter by element">
-                        <option value="">All Elements</option>
-                        <option value="cryo">Cryo</option>
-                        <option value="pyro">Pyro</option>
-                        <option value="electro">Electro</option>
-                        <option value="anemo">Anemo</option>
-                        <option value="hydro">Hydro</option>
-                        <option value="dendro">Dendro</option>
-                        <option value="geo">Geo</option>
-                    </select>
-
-                    <select id="weaponFilter" aria-label="Filter by weapon">
-                        <option value="">All Weapons</option>
-                        <option value="sword">Sword</option>
-                        <option value="claymore">Claymore</option>
-                        <option value="polearm">Polearm</option>
-                        <option value="catalyst">Catalyst</option>
-                        <option value="bow">Bow</option>
-                    </select>
-                </div>
-
-                <div id="characterGrid" class="character-grid">
-                    <!-- Character cards will be generated here -->
-                </div>
-            </section>
-
-            <!-- Character Details Modal -->
-            <div id="characterModal" class="modal" style="display: none;">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div id="characterDetails"></div>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>Database Version 1.0 | Characters: Sandrone, Yae Miko, Nicole, Alyosha, Odette, Escoffier</p>
-        </footer>
-    </div>
-
-    <script src="js/characterDatabase.js"></script>
-    <script src="js/main.js"></script>
+    
 </body>
 
 </html>
