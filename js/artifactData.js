@@ -47,8 +47,8 @@ const ARTIFACT_SETS = [
     }
   },
   {
-    id: 'unreleased_15048',
-    name: '???',
+    id: 'heart_forged_in_the_furnace_fire',
+    name: 'Heart Forged in the Furnace Fire',
     qualityType: 'QUALITY_ORANGE',
     unreleased: true,
     pieces: {
