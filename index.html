@@ -18,7 +18,7 @@
                     <span class="text-xl font-black tracking-tight">GENSHIN<span class="text-primary">CALC</span></span>
                 </div>
                 <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
-                    <a href="index.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Characters</a>
+                    <a href="characters.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
                     <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
                     <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
                     <a href="teams.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
@@ -28,10 +28,10 @@
 
         <main class="container py-8">
 
-            <!-- ============ CHARACTERS ============ -->
+            <!-- ============ CHARACTERS (static reference database) ============ -->
             <section id="page-characters" class="tab-page">
                 <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
-                    <h2 class="text-3xl font-bold">Characters</h2>
+                    <h2 class="text-3xl font-bold">Character Database</h2>
                     <div class="flex flex-wrap gap-2" id="character-filters">
                         <button
                             class="filter-button active px-3 py-1.5 rounded-md border border-border text-sm">All</button>
@@ -45,6 +45,8 @@
                             class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Catalyst</button>
                     </div>
                 </div>
+
+                <p class="text-sm text-muted-foreground mb-4">Looking to build a loadout? Head to the <a href="characters.html" class="text-primary hover:underline">Characters</a> tab.</p>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <div

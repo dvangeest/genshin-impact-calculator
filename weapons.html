@@ -20,7 +20,7 @@
                     <span class="text-xl font-black tracking-tight">GENSHIN<span class="text-primary">CALC</span></span>
                 </div>
                 <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
-                    <a href="index.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
+                    <a href="characters.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Characters</a>
                     <a href="weapons.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Weapons</a>
                     <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
                     <a href="teams.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
@@ -52,92 +52,6 @@
                 <!-- My Weapons grid (rendered by js/myWeapons.js) -->
                 <div id="my-weapons-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
             </section>
-
-            <!-- ============ WEAPON DATABASE ============
-            <section id="page-weapons" class="tab-page">
-                <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
-                    <h2 class="text-3xl font-bold">Weapon Database</h2>
-                    <div class="flex flex-wrap gap-2" id="weapon-filters">
-                        <button
-                            class="filter-button active px-3 py-1.5 rounded-md border border-border text-sm">All</button>
-                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Sword</button>
-                        <button
-                            class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Claymore</button>
-                        <button
-                            class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Polearm</button>
-                        <button
-                            class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Catalyst</button>
-                        <button class="filter-button px-3 py-1.5 rounded-md border border-border text-sm">Bow</button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Skyward Atlas</p>
-                            <p class="text-xs text-muted-foreground">Catalyst</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Skyward Spine</p>
-                            <p class="text-xs text-muted-foreground">Polearm</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-orange rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">A Teaspoon of Transcendence</p>
-                            <p class="text-xs text-muted-foreground">Claymore</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-purple rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Favonius Lance</p>
-                            <p class="text-xs text-muted-foreground">Polearm</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-
-                    <div
-                        class="quality-purple rounded-xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-white/20 hover:-translate-y-1 transition-all cursor-pointer">
-                        <div
-                            class="w-16 h-16 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                            Icon</div>
-                        <div class="text-center">
-                            <p class="font-semibold text-sm">Forgeable Weapon</p>
-                            <p class="text-xs text-muted-foreground">Sword / Catalyst</p>
-                        </div>
-                        <button
-                            class="w-full py-1.5 rounded-md bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">Details</button>
-                    </div>
-                </div>
-            </section> -->
 
         </main>
     </div>

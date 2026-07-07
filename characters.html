@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Team Damage Calculator — Characters</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my-artifacts.css">
+    <link rel="stylesheet" href="css/my-weapons.css">
+    <link rel="stylesheet" href="css/my-characters.css">
+</head>
+
+<body>
+    <div class="min-h-screen bg-background text-foreground">
+
+        <!-- HEADER / TAB NAV -->
+        <header class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+            <div class="container flex items-center justify-between py-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-black tracking-tight">GENSHIN<span class="text-primary">CALC</span></span>
+                </div>
+                <nav class="flex items-center gap-1 rounded-lg border border-border bg-secondary p-1" id="main-tabs">
+                    <a href="characters.html" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors">Characters</a>
+                    <a href="weapons.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Weapons</a>
+                    <a href="artifacts.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Artifacts</a>
+                    <a href="teams.html" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground">Teams</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container py-8">
+
+            <!-- ============ MY CHARACTERS ============ -->
+            <section id="page-my-characters" class="mb-12">
+                <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                        <h2 class="text-3xl font-bold">My Characters</h2>
+                        <p class="text-sm text-muted-foreground mt-1">Characters you've built, saved to this browser.</p>
+                    </div>
+                    <button id="open-character-select-modal-btn"
+                        class="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+                        + Add Character
+                    </button>
+                </div>
+
+                <!-- Empty state -->
+                <div id="my-characters-empty-state" class="rounded-xl border border-dashed border-border p-12 text-center hidden">
+                    <p class="text-muted-foreground">No characters yet.</p>
+                    <p class="text-sm text-muted-foreground/70 mt-1">Add your first one to start building loadouts.</p>
+                </div>
+
+                <!-- My Characters grid (rendered by js/myCharacters.js) -->
+                <div id="my-characters-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ============ CHARACTER SELECT MODAL ============ -->
+    <div id="character-select-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div id="character-select-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <div class="modal-panel relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold">Select a Character</h3>
+                <button id="close-character-select-modal-btn" class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+
+            <input id="character-search-input" type="text" placeholder="Search characters…"
+                class="weapon-search-input field-input w-full h-10 rounded-md border border-input bg-transparent px-3 text-sm mb-4 focus:outline-none focus:ring-1 focus:ring-ring">
+
+            <div id="character-select-list" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <!-- ============ CHARACTER CREATE / CONFIGURE MODAL ============ -->
+    <div id="character-create-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div id="character-create-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <div class="modal-panel relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 id="character-create-title" class="text-lg font-semibold">Character Name</h3>
+                <button id="close-character-create-modal-btn" class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+
+            <div id="character-create-error" class="hidden mb-4 rounded-md border border-destructive/50 bg-red-500/10 px-3 py-2 text-xs text-red-400"></div>
+
+            <div class="space-y-5">
+
+                <!-- Stats preview -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Character Stats</label>
+                    <div id="character-stat-grid" class="character-stat-grid"></div>
+                    <div id="character-bonus-notes" class="mt-2 space-y-0.5"></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Level -->
+                    <div>
+                        <label class="block text-xs font-medium text-muted-foreground mb-1.5" for="character-level-input">Level</label>
+                        <input id="character-level-input" type="number" min="1" max="90" value="1"
+                            class="field-input w-full h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring">
+                    </div>
+
+                    <!-- Constellation -->
+                    <div>
+                        <label class="block text-xs font-medium text-muted-foreground mb-1.5" for="character-constellation-input">Constellation</label>
+                        <input id="character-constellation-input" type="number" min="0" max="6" value="0"
+                            class="field-input w-full h-10 rounded-md border border-input bg-transparent px-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring">
+                    </div>
+                </div>
+
+                <!-- Talent levels -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Talent Levels</label>
+                    <div id="talent-level-fields" class="space-y-2"></div>
+                </div>
+
+                <!-- Weapon -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Weapon</label>
+                    <button id="open-weapon-select-for-character-btn" type="button" class="artifact-slot-btn">
+                        <span class="artifact-slot-label">Weapon</span>
+                        <span id="selected-weapon-label" class="artifact-slot-value">None selected</span>
+                    </button>
+                </div>
+
+                <!-- Artifacts -->
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground mb-1.5">Artifacts</label>
+                    <div id="artifact-slot-buttons" class="artifact-slot-grid"></div>
+                </div>
+
+            </div>
+
+            <div class="flex items-center gap-3 mt-6">
+                <button id="create-character-btn"
+                    class="flex-1 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ WEAPON SELECT (FOR CHARACTER) MODAL ============ -->
+    <div id="weapon-select-for-character-modal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div id="weapon-select-for-character-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <div class="modal-panel relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold">Select a Weapon</h3>
+                <button id="close-weapon-select-for-character-modal-btn" class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+            <div id="weapon-select-for-character-list" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <!-- ============ ARTIFACT SELECT (FOR CHARACTER) MODAL ============ -->
+    <div id="artifact-select-for-character-modal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div id="artifact-select-for-character-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <div class="modal-panel relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 id="artifact-select-for-character-title" class="text-lg font-semibold">Select an Artifact</h3>
+                <button id="close-artifact-select-for-character-modal-btn" class="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+            <div id="artifact-select-for-character-list" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <script src="js/weaponData.js"></script>
+    <script src="js/artifactData.js"></script>
+    <script src="js/characterData.js"></script>
+    <script src="js/myCharacters.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

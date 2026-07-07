@@ -1,0 +1,100 @@
+/* Companion styles for the character creation flow on characters.html.
+   Reuses .field-select / .field-input (css/my-artifacts.css) and
+   .weapon-list-item / .weapon-search-input (css/my-weapons.css) —
+   this file only adds what's specific to characters. */
+
+.character-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+@media (min-width: 480px) {
+    .character-stat-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.character-stat-item {
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--secondary) / 0.3);
+    padding: 0.5rem 0.75rem;
+}
+
+.character-stat-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--muted-foreground));
+}
+
+.character-stat-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 0.15rem;
+}
+
+.talent-level-row {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.talent-level-name {
+    font-size: 0.8rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.artifact-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.artifact-slot-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--secondary) / 0.3);
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.artifact-slot-btn:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    background-color: hsl(var(--secondary) / 0.6);
+}
+
+.artifact-slot-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--muted-foreground));
+}
+
+.artifact-slot-value {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#character-select-modal,
+#character-create-modal,
+#weapon-select-for-character-modal,
+#artifact-select-for-character-modal {
+    animation: weapon-modal-fade-in 0.15s ease-out;
+}
+
+#character-select-modal .modal-panel,
+#character-create-modal .modal-panel,
+#weapon-select-for-character-modal .modal-panel,
+#artifact-select-for-character-modal .modal-panel {
+    animation: weapon-modal-rise-in 0.18s ease-out;
+}
